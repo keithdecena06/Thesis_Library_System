@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goodbye - TCC e-Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="kiosk-goodbye">
+
+    <div class="greeting-container">
+        <div class="exit-icon">
+            <i class="fa-solid fa-person-walking-arrow-right"></i>
+        </div>
+
+        <h1 id="goodbye-text">Goodbye!</h1>
+        <p class="sub-text">You have successfully logged out.</p>
+        <h2 id="student-id-display">TCC-0525-2023</h2>
+        
+        <p class="reset-notice">System resetting in <span id="timer">5</span> seconds...</p>
+        
+        <div class="loading-bar">
+            <div class="progress logout-progress"></div>
+        </div>
+    </div>
+
+    <script>
+        // 5-Second Countdown and Redirect back to the entry page
+        let seconds = 5;
+        const timerElement = document.getElementById('timer');
+        
+        const countdown = setInterval(() => {
+            seconds--;
+            timerElement.innerText = seconds;
+            if (seconds <= 0) {
+                clearInterval(countdown);
+                window.location.href = "index.html"; 
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

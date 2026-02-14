@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCC e-Hub Kiosk | Welcome</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="kiosk-entry">
+
+    <input type="text" id="rfid-listener" autofocus style="position: absolute; opacity: 0;">
+
+    <div class="kiosk-welcome-container">
+        <div class="logo-circle">
+    <img src="logo.png" alt="TCC Logo" class="kiosk-logo">
+</div>
+        <h1>Tanauan City College e-Hub</h1>
+        <p class="instruction-text">Please tap your **RFID Card** to begin</p>
+
+        <div class="rfid-animation">
+            <i class="fa-solid fa-id-card-clip"></i>
+            <div class="waves"></div>
+        </div>
+
+        <div class="manual-login-section">
+            <hr>
+            <span>OR ENTER MANUALLY</span>
+            <div class="manual-inputs">
+                <input type="text" id="manual-id" placeholder="Student ID (TCC-XXXX-XXXX)">
+                <input type="password" id="manual-pass" placeholder="Password">
+                <div class="kiosk-auth-buttons">
+                    <button onclick="handleManual('login')" class="k-btn-login">LOGIN</button>
+                    <button onclick="handleManual('logout')" class="k-btn-logout">LOGOUT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="kiosk-logic.js"></script>
+</body>
+</html>

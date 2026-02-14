@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rate Your Experience</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f0f0f0; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { color: #DC143C; }
+        .student-info { background-color: #FFF8DC; padding: 20px; border-radius: 5px; margin: 20px 0; }
+        .rating-stars { margin: 30px 0; }
+        .rating-stars input { display: none; }
+        .rating-stars label { font-size: 2em; color: #ddd; cursor: pointer; }
+        .rating-stars input:checked ~ label,
+        .rating-stars label:hover,
+        .rating-stars label:hover ~ label { color: #FFD700; }
+        button { background-color: #DC143C; color: white; padding: 15px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 20px; }
+        button:hover { background-color: #B22222; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rate Your Library Experience</h1>
+
+        <div class="student-info">
+            <p><strong>Thank you, {{ student.name|truncatewords:1 }}!</strong></p>
+            <p>How would you rate your visit today?</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="rating-stars">
+                <input type="radio" id="star5" name="rating" value="5" required>
+                <label for="star5">★</label>
+                <input type="radio" id="star4" name="rating" value="4">
+                <label for="star4">★</label>
+                <input type="radio" id="star3" name="rating" value="3">
+                <label for="star3">★</label>
+                <input type="radio" id="star2" name="rating" value="2">
+                <label for="star2">★</label>
+                <input type="radio" id="star1" name="rating" value="1">
+                <label for="star1">★</label>
+            </div>
+
+            <button type="submit">Submit Rating</button>
+        </form>
+    </div>
+</body>
+</html>

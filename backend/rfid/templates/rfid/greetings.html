@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Entry Confirmed</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f0f0f0; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { color: #DC143C; font-size: 2.5em; }
+        .greeting { font-size: 1.5em; color: #FFD700; background-color: #DC143C; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .instruction { font-size: 1.2em; margin: 30px 0; }
+        .tap-button { background-color: #FFD700; color: #DC143C; padding: 20px 40px; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; font-weight: bold; }
+        .tap-button:hover { background-color: #FFA500; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Entry Recorded!</h1>
+
+        <div class="greeting">
+            {{ greeting }}, {{ student.name|truncatewords:1 }}!
+        </div>
+
+        <div class="instruction">
+            <p>Please proceed to your study area.</p>
+            <p>Enjoy your time at the library!</p>
+        </div>
+
+        <a href="{% url 'idle' %}" class="tap-button">Return to Main Screen</a>
+    </div>
+
+    <script>
+        // Auto-redirect to idle page after 5 seconds (ready for logout tap)
+        setTimeout(function() {
+            window.location.href = "{% url 'idle' %}";
+        }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends "base/kiosk_base.html" %}
+
+{% block content %}
+<div class="rfid-wait">
+  <h1>Please tap your ID card</h1>
+  <p>Hold your RFID card near the scanner</p>
+
+  <div class="spinner"></div>
+</div>
+
+<script>
+setInterval(async () => {
+  const res = await fetch("/kiosk/api/last-scan/");
+  const data = await res.json();
+
+  if (data.user_id) {
+    window.location.href = `/kiosk/account/rfid/${data.user_id}/`;
+  }
+}, 1500);
+</script>
+{% endblock %}

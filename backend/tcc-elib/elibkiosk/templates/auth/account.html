@@ -1,0 +1,111 @@
+{% extends "base/kiosk_base.html" %}
+{% load static %}
+
+{% block title %}My Account{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pages/account.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="account-wrap">
+  <a href="{% url 'elibrary:home' %}" class="back-btn">← Back</a>
+
+  <!-- HEADER -->
+  <div class="account-header">
+    <div class="account-left">
+      <div class="avatar">
+        {{ user.full_name|slice:":1" }}
+      </div>
+
+      <div>
+        <h1 class="account-greeting">
+          Welcome, {{ user.id_number }}
+        </h1>
+        <p class="account-meta">
+          {{ user.role|title }} • {{ user.program.name }} •
+          Year {{ user.year_level }} • Section {{ user.section }}
+        </p>
+      </div>
+    </div>
+
+    <div class="account-right">
+      <div class="theme-toggle">
+        <span class="theme-label">Dark Mode</span>
+        <label class="switch">
+          <input type="checkbox" id="theme-toggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ FILTER PILLS (ITO ANG NAWALA KANINA) -->
+  <div class="account-filters">
+    <button class="filter-pill active" data-filter="all">All</button>
+    <button class="filter-pill" data-filter="recorded">Recorded</button>
+    <button class="filter-pill" data-filter="saved">Saved</button>
+  </div>
+
+  <!-- GRID -->
+  <div class="account-grid">
+
+    <!-- LEFT -->
+    <div class="account-panel">
+      <h2 class="panel-title">Recent Activity</h2>
+
+      {% if actions %}
+        {% for a in actions %}
+          <div class="recent-item"
+               data-type="{{ a.action }}"
+               data-content="{{ a.content_type }}">
+
+            <p class="item-title">
+              {% if a.action == "recorded" %}
+                ✔️ Recorded
+              {% else %}
+                ⭐ Saved
+              {% endif %}
+              —
+              {% if a.content_type == "book" %}
+                {{ a.book.title }}
+              {% else %}
+                {{ a.thesis.title }}
+              {% endif %}
+            </p>
+
+            <p class="item-author">
+              {% if a.content_type == "book" %}
+                {{ a.book.author }}
+              {% else %}
+                {{ a.thesis.student_name }}
+              {% endif %}
+              • {{ a.created_at|date:"M d, Y — h:i A" }}
+            </p>
+
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="item-author">No activity yet.</p>
+      {% endif %}
+    </div>
+
+    <!-- RIGHT -->
+    <div class="account-stats">
+      <div class="stat-card">
+        <p class="stat-label">Total Activity</p>
+        <p class="stat-value">{{ actions|length }}</p>
+      </div>
+
+      <div class="achievement-card">
+        <p class="achievement-title">Silver Collector</p>
+        <p class="achievement-desc">Record 20 books this semester</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="{% static 'js/theme-toggle.js' %}"></script>
+{% endblock %}

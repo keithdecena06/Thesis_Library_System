@@ -1,0 +1,347 @@
+:root {
+    --primary-maroon: #8B2E31;
+    --accent-pink: #E94B5E;
+}
+
+body.kiosk-entry {
+    background: radial-gradient(circle, #fdfdfd 0%, #f0f0f0 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+}
+
+.kiosk-welcome-container {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.logo-circle {
+    width: 150px;           /* Size of the circle */
+    height: 150px;
+    background: white;      /* White background looks best for logos */
+    border-radius: 50%;     /* Makes it a circle */
+    margin: 0 auto 30px;    /* Centers the circle and adds space below */
+    display: flex;
+    align-items: center;    /* Centers the logo vertically */
+    justify-content: center; /* Centers the logo horizontally */
+    overflow: hidden;       /* Clips the image if it's too big */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 4px solid var(--primary-maroon);
+}
+
+.kiosk-logo {
+    width: 100%;             /* Scales the logo to fit nicely inside the circle */
+    height: 100%;
+    object-fit: contain;    /* Prevents the logo from stretching or squishing */
+    image-rendering: -webkit-optimize-contrast; /* For Chrome/Safari */
+    image-rendering: crisp-edges;               /* For Firefox */
+    backface-visibility: hidden;                /* Helps with sub-pixel rendering blur */
+    transform: scale(1.1) translateZ(0);        /* Forces GPU rendering for better clarity */
+    filter: contrast(1.1) brightness(1.05); 
+    -webkit-font-smoothing: antialiased;
+}
+
+h1 { color: var(--primary-maroon); font-size: 2.5rem; margin-bottom: 10px; }
+.instruction-text { font-size: 1.2rem; color: #555; margin-bottom: 40px; }
+
+/* RFID Animation */
+.rfid-animation i {
+    font-size: 6rem;
+    color: var(--primary-maroon);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Manual Section */
+.manual-login-section { margin-top: 50px; }
+.manual-inputs { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+.manual-inputs input {
+    padding: 15px;
+    font-size: 1.1rem;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.kiosk-auth-buttons { display: flex; gap: 15px; }
+.kiosk-auth-buttons button {
+    flex: 1;
+    padding: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+}
+
+.k-btn-login { background: #27ae60; }
+.k-btn-logout { background: var(--primary-maroon); }
+/* Container for the choice buttons */
+.kiosk-selection {
+    background-color: #f5f5f7;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.selection-container {
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+}
+
+.selection-title {
+    font-size: 3rem;
+    color: var(--primary-maroon);
+    margin-bottom: 10px;
+}
+
+.selection-subtitle {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 50px;
+}
+
+/* Grid for the two giant buttons */
+.selection-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.select-card {
+    background: white;
+    text-decoration: none;
+    padding: 60px 40px;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 10px solid transparent;
+}
+
+.select-card i {
+    font-size: 6rem;
+    margin-bottom: 20px;
+}
+
+.select-card span {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.select-card p {
+    font-size: 1.1rem;
+    color: #777;
+}
+
+/* Color Coding */
+.login-action { color: #27ae60; border-bottom-color: #27ae60; }
+.logout-action { color: var(--primary-maroon); border-bottom-color: var(--primary-maroon); }
+
+/* Touch Interaction */
+.select-card:active {
+    transform: scale(0.95);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.cancel-btn {
+    display: inline-block;
+    margin-top: 20px;
+    color: #888;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ccc;
+}
+.kiosk-purpose {
+    background-color: #ffffff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.purpose-container {
+    text-align: center;
+    width: 90%;
+    max-width: 1100px;
+}
+
+.purpose-title {
+    font-size: 3.5rem;
+    color: var(--primary-maroon);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.purpose-subtitle {
+    font-size: 1.4rem;
+    color: #555;
+    margin-bottom: 60px;
+}
+
+/* Three-column layout for the reasons */
+.purpose-grid {
+    display: flex;
+    flex-wrap: wrap;       /* This allows buttons to jump to the next line */
+    justify-content: center; /* Keeps them centered if they wrap */
+    gap: 20px;             /* Space between the buttons */
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.purpose-card {
+    flex: 1 1 300px;       /* Grow, Shrink, and try to be at least 300px wide */
+    max-width: 350px;      /* Prevents cards from getting TOO wide on desktop */
+    min-height: 250px;
+    background: #fff;
+    border: 2px solid #eee;
+    padding: 40px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+.purpose-card i {
+    font-size: clamp(3rem, 10vw, 5rem); /* Scales between 3rem and 5rem based on screen width */
+    margin-bottom: 15px;
+}
+.purpose-card span { font-size: 2rem; font-weight: bold; margin-bottom: 10px; }
+.purpose-card p { font-size: 1rem; color: #777; }
+
+/* Themes for each button */
+.borrow-theme { color: #E94B5E; border-bottom: 10px solid #E94B5E; }
+.research-theme { color: #f39c12; border-bottom: 10px solid #f39c12; }
+.facility-theme { color: #2196F3; border-bottom: 10px solid #2196F3; }
+
+.purpose-card:active { transform: scale(0.95); }
+
+.back-btn-kiosk {
+    display: inline-block;
+    margin-top: 50px;
+    color: #999;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+.kiosk-greeting {
+    background-color: #ffffff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.greeting-container {
+    text-align: center;
+}
+
+.success-icon i {
+    font-size: 8rem;
+    color: #27ae60;
+    margin-bottom: 20px;
+}
+
+#greeting-text {
+    font-size: 4rem;
+    color: var(--primary-maroon);
+    margin-bottom: 10px;
+}
+
+#student-id-display {
+    font-size: 2.5rem;
+    color: #555;
+    font-weight: 300;
+    margin-bottom: 40px;
+}
+
+.reset-notice {
+    font-size: 1.2rem;
+    color: #999;
+}
+
+/* Loading Bar Animation */
+.loading-bar {
+    width: 300px;
+    height: 8px;
+    background: #eee;
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    width: 100%;
+    height: 100%;
+    background: #27ae60;
+    animation: shrink 5s linear forwards;
+}
+
+@keyframes shrink {
+    from { width: 100%; }
+    to { width: 0%; }
+}
+/* This ensures the entire page acts as a centering box */
+.kiosk-goodbye {
+    background-color: #ffffff;
+    height: 100vh;
+    width: 100%;
+    display: flex;           /* Flexbox layout */
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;       /* Center the text lines */
+}
+
+/* This holds the actual message */
+.greeting-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* Centers child elements (icon, h1, h2) */
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;         /* Keeps it tight on desktop */
+}
+
+.exit-icon i {
+    font-size: clamp(5rem, 15vw, 8rem); /* Fluid size for mobile/desktop */
+    color: var(--primary-maroon);
+    margin-bottom: 20px;
+}
+
+#goodbye-text {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+    color: var(--primary-maroon);
+    margin: 10px 0;
+}
+
+#student-id-display {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    color: #555;
+    font-weight: 300;
+    margin-bottom: 30px;
+}

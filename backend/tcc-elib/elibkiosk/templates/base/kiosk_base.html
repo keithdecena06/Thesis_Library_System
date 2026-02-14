@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}TCC e-Library{% endblock %}</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/phosphor-icons@1.4.2/src/css/icons.css">
+
+  <link rel="stylesheet" href="{% static 'css/base/kiosk-base.css' %}">
+
+  {% block page_css %}{% endblock %}
+</head>
+
+<body>
+
+  {% include 'components/navbar.html' %}
+
+  <main class="kiosk-home-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <script>
+    var loginStatus = "{{ request.session.rfid_user_id|yesno:'true,false' }}";
+    window.IS_LOGGED_IN = (loginStatus === "true");
+    
+    console.log("Logged in:", window.IS_LOGGED_IN);
+  </script>
+
+  <script>
+  function logoutUser() {
+    fetch("/kiosk/api/logout/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(() => {
+      window.location.href = "/kiosk/idle/";
+    });
+  }
+  </script>
+
+  <script src="{% static 'js/modal.js' %}"></script>
+  <script src="{% static 'js/idle.js' %}"></script>
+
+</body>
+</html>

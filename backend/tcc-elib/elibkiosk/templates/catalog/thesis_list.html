@@ -1,0 +1,71 @@
+{% extends "base/catalog_base.html" %}
+{% load static %}
+
+{% block title %}
+  {% if program %}{{ program.name }} Theses{% else %}Best Theses{% endif %}
+{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pages/list.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="list-wrap">
+
+  <h1 class="page-title">
+    {% if program %}
+      {{ program.name }} Theses
+    {% else %}
+      Best Theses
+    {% endif %}
+  </h1>
+
+  <p class="page-subtitle">
+    Undergraduate research projects sorted by year
+  </p>
+
+  <!-- =========================
+       YEAR FILTER PILLS
+       ========================= -->
+  <div class="filter-chips">
+    <span class="chip active" data-year="all">All</span>
+
+    {% for year in years %}
+      <span class="chip" data-year="{{ year }}">{{ year }}</span>
+    {% endfor %}
+  </div>
+
+  <!-- =========================
+       TABLE HEADER
+       ========================= -->
+  <div class="list-header">
+    <span>Title</span>
+    <span>Student</span>
+    <span>Year</span>
+    <span>Category</span>
+  </div>
+
+  <!-- =========================
+       SCROLLABLE LIST
+       ========================= -->
+  <div class="list-body">
+
+    {% for thesis in theses %}
+    <div class="list-row" data-year="{{ thesis.year }}">
+      <span>{{ thesis.title }}</span>
+      <span>{{ thesis.student_name }}</span>
+      <span>{{ thesis.year }}</span>
+      <span class="category">{{ thesis.category }}</span>
+    </div>
+    {% empty %}
+    <div class="list-row empty">
+      <span>No theses available.</span>
+    </div>
+    {% endfor %}
+
+  </div>
+
+</div>
+
+{% endblock %}

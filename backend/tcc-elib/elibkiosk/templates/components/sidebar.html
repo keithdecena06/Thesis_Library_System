@@ -1,0 +1,52 @@
+<aside class="sidebar">
+
+  <div class="brand">
+    <strong>Collections</strong>
+  </div>
+
+  <nav>
+
+    <!-- HOME -->
+    <a href="{% url 'elibrary:home' %}"
+       class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+      <i class="ph ph-house"></i>
+      Home
+    </a>
+
+    <!-- PROGRAM BOOKS -->
+    <a href="{% url 'elibrary:programs' %}"
+       class="{% if request.resolver_match.url_name == 'programs' %}active{% endif %}">
+      <i class="ph ph-stack"></i>
+      Program Books
+    </a>
+
+    <!-- STUDENT THESES -->
+    <a href="{% url 'elibrary:theses' %}"
+       class="{% if request.resolver_match.url_name == 'theses' %}active{% endif %}">
+      <i class="ph ph-graduation-cap"></i>
+      Student Theses
+    </a>
+
+    <span class="disabled">
+      <i class="ph ph-flask"></i>
+      Research Works
+    </span>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="brand">
+      <strong>Activity</strong>
+    </div>
+
+    <span class="disabled">
+      <i class="ph ph-book"></i>
+      Record a Book
+    </span>
+
+    <span class="disabled">
+      <i class="ph ph-user"></i>
+      My Records
+    </span>
+
+  </nav>
+</aside>

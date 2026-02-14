@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purpose of Visit - TCC e-Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="kiosk-purpose">
+
+    <div class="purpose-container">
+        <h1 class="purpose-title">Purpose of Visit</h1>
+        <p class="purpose-subtitle">Please select the primary reason for your visit today.</p>
+
+        <div class="purpose-grid">
+            <button onclick="recordVisit('Borrowing')" class="purpose-card borrow-theme">
+                <i class="fa-solid fa-book-bookmark"></i>
+                <span>Borrowing</span>
+                <p>Requesting or returning books</p>
+            </button>
+
+            <button onclick="recordVisit('Research')" class="purpose-card research-theme">
+                <i class="fa-solid fa-microscope"></i>
+                <span>Research</span>
+                <p>Using library resources for study</p>
+            </button>
+
+            <button onclick="recordVisit('Facility')" class="purpose-card facility-theme">
+                <i class="fa-solid fa-building-user"></i>
+                <span>Facility</span>
+                <p>Using study areas or laboratories</p>
+            </button>
+        </div>
+
+        <a href="selection.html" class="back-btn-kiosk">Go Back</a>
+    </div>
+
+    <script>
+        function recordVisit(reason) {
+            // Here you would normally save the reason to a database
+            console.log("Visit recorded for: " + reason);
+            
+            // Move to the final Greeting page
+            window.location.href = "greeting.html";
+        }
+    </script>
+</body>
+</html>

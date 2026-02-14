@@ -1,0 +1,20 @@
+<header class="kiosk-navbar">
+  <div class="nav-left">
+    <div class="nav-logo"></div>
+    <span class="nav-title">Tanauan City College: e-Library</span>
+  </div>
+
+  <div class="nav-right">
+    {% if request.session.rfid_user_id %}
+      <span class="nav-user">
+        TCC ID: {{ request.session.rfid_user_id }}
+      </span>
+
+      <button class="nav-logout" onclick="logoutUser()">
+        Exit >
+      </button>
+    {% else %}
+      {% now "l, F j, Y g:i A" %}
+    {% endif %}
+  </div>
+</header>

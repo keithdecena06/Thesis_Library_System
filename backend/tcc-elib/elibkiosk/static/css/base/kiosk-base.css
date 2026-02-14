@@ -1,0 +1,146 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f6f7f9;
+  overflow: hidden;
+}
+
+/* NAVBAR */
+.kiosk-navbar {
+  height: 64px;
+  background: linear-gradient(135deg, #8b0504, #a20705 45%, #c40a08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  position: relative;
+  z-index: 50;
+}
+
+.kiosk-navbar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255,255,255,0.25);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e1ff00;
+}
+
+.nav-title {
+  font-size: 18px;
+  color: #fff;
+}
+
+.nav-right {
+  font-size: 15px;
+  color: #fff;
+}
+
+.nav-user {
+  font-weight: 600;
+}
+
+.nav-logout {
+  background: #b00000;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* LAYOUT */
+.catalog-layout {
+  display: flex;
+  height: calc(100vh - 64px);
+}
+
+.catalog-content {
+  flex: 1;
+  padding: 12px; /* 32 before */
+  overflow: hidden;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 230px;
+  background: #fff;
+  padding: 28px 24px;
+  border-right: 1px solid #eee;
+  flex-shrink: 0;
+}
+
+.sidebar .brand {
+  margin: 18px 0 10px;
+}
+
+.sidebar .brand strong {
+  font-size: 13px;
+  font-weight: 600;
+  color: #777;
+  letter-spacing: 0.3px;
+}
+
+.sidebar nav a,
+.sidebar nav span {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  min-height: 48px;
+  border-radius: 12px;
+  font-size: 16px;
+  color: #333;
+  text-decoration: none;
+}
+
+.sidebar nav a.active {
+  background: rgba(162, 7, 5, 0.10);
+  color: #a20705;
+  font-weight: 600;
+}
+
+.sidebar nav .disabled {
+  color: #aaa;
+  pointer-events: none;
+}
+
+.sidebar-divider {
+  margin: 20px 0 16px;
+  height: 1px;
+  background: rgba(0,0,0,0.08);
+}
+
+/* ===============================
+   SIDEBAR SECTION HEADERS RESET
+   =============================== */
+
+.sidebar .brand {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+.sidebar .brand:hover,
+.sidebar .brand:active {
+  background: transparent !important;
+}

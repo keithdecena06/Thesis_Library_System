@@ -1,0 +1,30 @@
+{% extends "admin/base_site.html" %}
+{% load admin_stats %}
+
+{% block content %}
+    <div style="display:flex;gap:24px;align-items:flex-start;margin-top:18px;">
+        <div style="flex:3;min-width:320px;">
+            {% if app_list %}
+                <div class="app-list" style="display:flex;gap:24px;flex-wrap:wrap;">
+                    {% for app in app_list %}
+                        <div style="flex:1 1 260px;padding:12px;border-radius:8px;border:1px solid #eee;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.03);">
+                            <h2 style="margin:0 0 8px;color:#333;font-size:1.05rem;">{{ app.name }}</h2>
+                            <ul style="margin:0;padding-left:18px;">
+                                {% for model in app.models %}
+                                    <li style="margin:6px 0;"><a href="{{ model.admin_url }}">{{ model.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>{% trans "You don't have any apps." %}</p>
+            {% endif %}
+        </div>
+
+        <aside style="flex:1;max-width:360px;">
+            {% library_stats %}
+        </aside>
+    </div>
+
+{% endblock %}

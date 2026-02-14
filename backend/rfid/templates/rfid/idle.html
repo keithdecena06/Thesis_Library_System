@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tanauan City College - Smart Library System</title>
+    {% load static %}
+    <style>
+        :root {
+            --primary-maroon: #8B2E31;
+            --accent-pink: #E94B5E;
+        }
+
+        body {
+            background: radial-gradient(circle, #fdfdfd 0%, #f0f0f0 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .kiosk-welcome-container {
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .logo-circle {
+            width: 150px;
+            height: 150px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 4px solid var(--primary-maroon);
+        }
+
+        .kiosk-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            backface-visibility: hidden;
+            transform: scale(1.1) translateZ(0);
+            filter: contrast(1.1) brightness(1.05);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1 {
+            color: var(--primary-maroon);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--primary-maroon);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .instruction-text {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        /* RFID Animation */
+        .rfid-animation i {
+            font-size: 6rem;
+            color: var(--primary-maroon);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .waves {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--primary-maroon);
+            border-radius: 50%;
+            animation: wave 2s infinite;
+        }
+
+        @keyframes wave {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        /* Manual Section */
+        .manual-login-section {
+            margin-top: 50px;
+        }
+
+        .manual-login-section hr {
+            border: none;
+            height: 1px;
+            background: #ddd;
+            margin: 20px 0;
+        }
+
+        .manual-login-section span {
+            background: white;
+            padding: 0 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .manual-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .manual-inputs input {
+            padding: 15px;
+            font-size: 1.1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .rfid-form {
+            margin: 20px 0;
+        }
+
+        button {
+            background-color: var(--primary-maroon);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: var(--accent-pink);
+        }
+
+        .error {
+            color: var(--accent-pink);
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .processing {
+            color: var(--primary-maroon);
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="kiosk-welcome-container">
+        <div class="logo-circle">
+            <img src="{% static 'rfid/admin/css/logo.png' %}" alt="TCC Logo" class="kiosk-logo">
+        </div>
+
+        <h1>Tanauan City College</h1>
+        <div class="subtitle">Smart Library System</div>
+        <p class="instruction-text">Please tap your <strong>RFID Card</strong> to begin</p>
+
+        <div class="rfid-animation">
+            <i class="fa-solid fa-id-card-clip"></i>
+        </div>
+
+        <form class="rfid-form" method="post">
+            {% csrf_token %}
+            <input id="rfid-input" type="text" name="rfid_uid" placeholder="Enter RFID UID" required autofocus>
+            <br>
+            <button type="submit">Simulate Card Tap</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+            {% if received_uid %}
+                <p class="error">Received UID: {{ received_uid }}</p>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <script>
+        // Poll for RFID scans every 1 second — check both entry and catalog systems
+        setInterval(function() {
+            Promise.all([
+                fetch('/api/check_rfid_scan/').then(r => r.json()).catch(() => null),
+                fetch('/catalog/api/last-scan/').then(r => r.json()).catch(() => null)
+            ]).then(([entryData, catalogData]) => {
+                // Prioritize entry system scans (existing flow)
+                if (entryData && entryData.status === 'success') {
+                    if (entryData.action === 'login') {
+                        const processingDiv = document.createElement('p');
+                        processingDiv.className = 'processing';
+                        processingDiv.textContent = 'Processing login...';
+                        document.querySelector('.kiosk-welcome-container').appendChild(processingDiv);
+                        setTimeout(() => { window.location.href = entryData.redirect_url; }, 500);
+                        return;
+                    }
+                    if (entryData.action === 'logout') {
+                        const processingDiv = document.createElement('p');
+                        processingDiv.className = 'processing';
+                        processingDiv.textContent = 'Processing logout...';
+                        document.querySelector('.kiosk-welcome-container').appendChild(processingDiv);
+                        setTimeout(() => { window.location.href = entryData.redirect_url; }, 500);
+                        return;
+                    }
+                }
+
+                // If catalog reported a recent scan, consume it and redirect to catalog record page
+                if (catalogData && catalogData.found) {
+                    const logId = catalogData.log_id;
+                    fetch('/catalog/api/consume-scan/', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ log_id: logId })
+                    })
+                    .then(r => r.json())
+                    .then(cons => {
+                        if (cons && cons.status === 'ok') {
+                            window.location.href = `/catalog/record/?user=${cons.user_id}`;
+                        }
+                    })
+                    .catch(err => console.log('Consume scan error', err));
+                    return;
+                }
+
+                // Show errors reported by entry system
+                if (entryData && entryData.status === 'error') {
+                    const errorDiv = document.querySelector('.error') || document.createElement('p');
+                    errorDiv.className = 'error';
+                    errorDiv.textContent = entryData.message || 'Student not found';
+                    document.querySelector('.kiosk-welcome-container').appendChild(errorDiv);
+                    setTimeout(() => { errorDiv.remove(); }, 5000);
+                }
+            }).catch(err => { console.log('Polling combined error', err); });
+        }, 1000);
+
+        // Keep focus on input for keyboard-wedge readers and auto-submit when UID enters
+        (function() {
+            const input = document.getElementById('rfid-input');
+            let debounce;
+
+            // Keep input focused (helps some kiosk setups where focus is lost)
+            function keepFocus() {
+                try { input.focus({preventScroll: true}); } catch (e) { input.focus(); }
+            }
+            setInterval(keepFocus, 1000);
+            document.addEventListener('visibilitychange', () => { if (!document.hidden) keepFocus(); });
+
+            // Submit on Enter key
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    input.value = input.value.replace(/[^A-Za-z0-9]/g, '').trim().toUpperCase();
+                    input.form.submit();
+                }
+            });
+
+            // Debounced auto-submit after typing stops (helps some USB readers)
+            input.addEventListener('input', () => {
+                clearTimeout(debounce);
+                debounce = setTimeout(() => {
+                    let v = input.value.replace(/[^A-Za-z0-9]/g, '').trim().toUpperCase();
+                    if (v.length > 0) {
+                        input.value = v;
+                        input.form.submit();
+                    }
+                }, 300);
+            });
+
+            // Focus on initial load
+            keepFocus();
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+{% extends "base/kiosk_base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pages/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="home-wrap">
+  <div class="center-wrapper">
+
+    <!-- HEADER -->
+    <h1 class="home-title">Welcome to TCC e-Library</h1>
+    <p class="home-subtitle">What would you like to do today?</p>
+
+    <!-- SEARCH -->
+    <div class="search-wrapper" style="position: relative;">
+
+      <form
+        action="{% url 'elibrary:search_results' %}"
+        method="get"
+        class="center-search"
+        autocomplete="off"
+      >
+        <i class="ph ph-magnifying-glass"></i>
+
+        <input
+          id="home-search"
+          type="text"
+          name="q"
+          placeholder="Search books or theses"
+          autocomplete="off"
+          required
+          aria-label="Search books or theses"
+        >
+      </form>
+
+      <!-- SEARCH SUGGESTIONS (DROPDOWN) -->
+      <div
+        id="search-suggestions"
+        class="search-suggestions"
+        role="listbox"
+        aria-label="Search suggestions"
+      ></div>
+
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="card-grid">
+
+      <a href="{% url 'elibrary:programs' %}" class="action-card">
+        <i class="ph ph-book-open"></i>
+        <h3>Book Catalog</h3>
+        <p>Browse available books</p>
+      </a>
+
+      <a href="#" class="action-card" onclick="startRFIDScan('account')">
+        <i class="ph ph-user"></i>
+        <h3>My Account</h3>
+        <p>View your activity</p>
+      </a>
+
+      <a href="#" class="action-card" onclick="startRFIDScan('record')">
+        <i class="ph ph-check-circle"></i>
+        <h3>Record a Book</h3>
+        <p>Log books you’ve read</p>
+      </a>
+
+    </div>
+
+    <p class="home-helper">
+      Select an option above to get started.
+    </p>
+
+  </div>
+</div>
+
+<!-- RFID SCAN MODAL -->
+<div id="rfid-modal" class="rfid-modal hidden">
+  <div class="rfid-card">
+
+    <div class="rfid-icon scanning"></div>
+
+    <h2 id="rfid-title">Please tap your ID</h2>
+    <p id="rfid-sub">Scanning…</p>
+
+  </div>
+</div>
+
+<script src="{% static 'js/home-search.js' %}"></script>
+<script src="{% static 'js/rfid-modal.js' %}"></script>
+
+{% endblock %}

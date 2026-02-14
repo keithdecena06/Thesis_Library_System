@@ -1,0 +1,124 @@
+{% extends "base/catalog_base.html" %}
+{% load static %}
+
+{% block title %}Program Books{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pages/programs.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="ios-container">
+
+    <!-- HEADER -->
+    <header class="header-area">
+        <h1 class="page-title">Program Books</h1>
+        <p class="page-subtitle">Browse book collections by academic program</p>
+    </header>
+
+    <!-- FEATURED SECTION (MOVED UP) -->
+    <div class="featured-section">
+
+        <!-- TOP ACCESSED -->
+        <div class="featured-card theme-crimson">
+            <div class="featured-badge">
+                <i class="ph-fill ph-trend-up"></i> Top Accessed
+            </div>
+
+            <div class="book-info">
+                <img
+                    src="{% static 'images/eng.png' %}"
+                    alt="Foundations of Computer Engineering"
+                    class="book-cover"
+                >
+                <div class="book-details">
+                    <h4>Foundations of Computer Engineering</h4>
+                    <p>By M. Morris Mano</p>
+                    <div class="pill-group">
+                        <span class="pill">CPE</span>
+                        <span class="pill">Reference</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOP FAVORITE -->
+        <div class="featured-card theme-indigo">
+            <div class="featured-badge">
+                <i class="ph-fill ph-heart"></i> Top Favorite
+            </div>
+
+            <div class="book-info">
+                <img
+                    src="{% static 'images/pa.png' %}"
+                    alt="Introduction to Public Administration"
+                    class="book-cover"
+                >
+                <div class="book-details">
+                    <h4>Introduction to Public Administration</h4>
+                    <p>By Woodrow Wilson</p>
+                    <div class="pill-group">
+                        <span class="pill">PA</span>
+                        <span class="pill">Popular</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- PROGRAM CARDS -->
+    <div class="ios-grid">
+
+        <a href="{% url 'elibrary:program_books' 'cpe' %}" class="ios-card theme-cpe">
+            <div class="icon-box"><i class="ph ph-cpu"></i></div>
+            <div class="card-content">
+                <h3>Computer Engineering</h3>
+                <p>Engineering & Computing</p>
+            </div>
+        </a>
+
+        <a href="{% url 'elibrary:program_books' 'pa' %}" class="ios-card theme-pa">
+            <div class="icon-box"><i class="ph ph-buildings"></i></div>
+            <div class="card-content">
+                <h3>Public Administration</h3>
+                <p>Govt & Public Service</p>
+            </div>
+        </a>
+
+        <a href="{% url 'elibrary:program_books' 'educ' %}" class="ios-card theme-educ">
+            <div class="icon-box"><i class="ph ph-chalkboard-teacher"></i></div>
+            <div class="card-content">
+                <h3>Secondary Education</h3>
+                <p>Teaching & Pedagogy</p>
+            </div>
+        </a>
+
+        <a href="{% url 'elibrary:program_books' 'entrep' %}" class="ios-card theme-entrep">
+            <div class="icon-box"><i class="ph ph-lightbulb"></i></div>
+            <div class="card-content">
+                <h3>Entrepreneurship</h3>
+                <p>Business & Innovation</p>
+            </div>
+        </a>
+
+        <a href="{% url 'elibrary:program_books' 'acct' %}" class="ios-card theme-acct">
+            <div class="icon-box"><i class="ph ph-calculator"></i></div>
+            <div class="card-content">
+                <h3>Management Accounting</h3>
+                <p>Accounting & Finance</p>
+            </div>
+        </a>
+
+        <a href="#" class="ios-card theme-other">
+            <div class="icon-box"><i class="ph ph-stack"></i></div>
+            <div class="card-content">
+                <h3>Other Collections</h3>
+                <p>General References</p>
+            </div>
+        </a>
+
+    </div>
+
+</div>
+{% endblock %}

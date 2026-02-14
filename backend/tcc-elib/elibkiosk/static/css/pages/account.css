@@ -1,0 +1,365 @@
+/* ======================================================
+   GLOBAL VARIABLES (DEFAULT / LIGHT)
+   ====================================================== */
+:root {
+  --bg: #f6f7f9;
+  --card: #ffffff;
+  --text: #111;
+  --muted: #666;
+  --border: rgba(0,0,0,0.08);
+  --shadow: 0 18px 36px rgba(0,0,0,0.08);
+
+  --primary: #a20705;
+  --primary-soft: rgba(162,7,5,0.14);
+}
+
+/* ======================================================
+   DARK MODE
+   ====================================================== */
+.theme-dark {
+  --bg: #0e0e0e;
+  --card: #1a1a1a;
+  --text: #f2f2f2;
+  --muted: #aaa;
+  --border: rgba(255,255,255,0.08);
+  --shadow: 0 24px 50px rgba(0,0,0,0.9);
+
+  --primary: #e53935;
+  --primary-soft: rgba(229,57,53,0.22);
+}
+
+/* ======================================================
+   BASE
+   ====================================================== */
+body {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ======================================================
+   WRAPPER
+   ====================================================== */
+.account-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 32px 72px;
+}
+
+/* ======================================================
+   HEADER
+   ====================================================== */
+.account-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.account-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.account-greeting {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.account-meta {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ======================================================
+   AVATAR
+   ====================================================== */
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 22px;
+  display: grid;
+  place-items: center;
+}
+
+/* ======================================================
+   RIGHT HEADER
+   ====================================================== */
+.account-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* ======================================================
+   STATUS
+   ====================================================== */
+.account-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #2e8b57;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2e8b57;
+}
+
+/* ======================================================
+   APPLE STYLE THEME TOGGLE (MATCHES YOUR HTML)
+   ====================================================== */
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-label {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* wrapper */
+.switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  display: inline-block;
+}
+
+/* hide checkbox */
+.switch input {
+  display: none;
+}
+
+/* track */
+.slider {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.18);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* knob */
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* ON state */
+.switch input:checked + .slider {
+  background: var(--primary);
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+/* hover feedback */
+.switch:hover .slider {
+  box-shadow: 0 0 0 4px rgba(0,0,0,0.05);
+}
+
+/* dark theme refinement */
+.theme-dark .slider {
+  background: rgba(255,255,255,0.25);
+}
+
+.theme-dark .switch input:checked + .slider {
+  background: var(--primary);
+}
+
+/* ======================================================
+   FILTER PILLS
+   ====================================================== */
+.account-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 6px;
+}
+
+.filter-pill {
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filter-pill:hover {
+  background: var(--primary-soft);
+}
+
+.filter-pill.active {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-color: var(--primary);
+  font-weight: 500;
+}
+
+/* ======================================================
+   GRID
+   ====================================================== */
+.account-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 32px;
+  margin-top: 4px;
+}
+
+/* ======================================================
+   MAIN CARD
+   ====================================================== */
+.account-panel {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 28px 32px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.panel-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* ======================================================
+   RECORDED BOOK LIST
+   ====================================================== */
+.recent-item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.recent-item:last-child {
+  border-bottom: none;
+}
+
+.item-title {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.item-author {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ======================================================
+   RIGHT SIDE STATS
+   ====================================================== */
+.account-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.stat-card {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.stat-value {
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 10px;
+}
+
+/* ======================================================
+   ACHIEVEMENT CARD (GAMIFIED)
+   ====================================================== */
+.achievement-card {
+  background: linear-gradient(135deg, var(--primary), #111);
+  border-radius: 24px;
+  padding: 26px;
+  color: #fff;
+}
+
+.achievement-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.achievement-desc {
+  font-size: 13px;
+  opacity: 0.85;
+  margin-top: 6px;
+}
+
+/* ===============================
+   BACK BUTTON
+   =============================== */
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  transition: all 0.2s ease;
+  margin-bottom: 18px;
+}
+
+.back-btn:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+  transform: translateX(-2px);
+}
+
+.recent-item {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.item-title {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.item-author {
+  font-size: 13px;
+  color: #666;
+}

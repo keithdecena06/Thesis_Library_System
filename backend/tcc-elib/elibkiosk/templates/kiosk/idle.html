@@ -1,0 +1,26 @@
+{% extends "base/kiosk_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="idle-screen" onclick="goHome()">
+  <h1>Welcome to TCC e-Library</h1>
+  <p>Tap the screen to start or tap your ID</p>
+</div>
+
+<script>
+function goHome() {
+  window.location.href = "/kiosk/";
+}
+
+// MOUSE CLICK
+document.addEventListener("click", goHome);
+
+// TOUCHSCREEN
+document.addEventListener("touchstart", goHome);
+
+// KEYBOARD (optional but good for dev)
+document.addEventListener("keydown", goHome);
+</script>
+
+<script src="{% static 'js/idle.js' %}"></script>
+{% endblock %}

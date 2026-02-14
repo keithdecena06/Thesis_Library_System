@@ -1,0 +1,68 @@
+/* Custom Admin Theme - Red and Yellow */
+
+/* Header background */
+#site-name a {
+    color: #FFD700 !important; /* Yellow text */
+}
+
+#site-name {
+    background-color: #DC143C !important; /* Crimson red */
+}
+
+/* Navigation links */
+#nav-sidebar a {
+    color: #DC143C !important; /* Red links */
+}
+
+#nav-sidebar a:hover {
+    background-color: #FFD700 !important; /* Yellow hover */
+    color: #000 !important;
+}
+
+/* Main content area */
+#content-main {
+    background-color: #FFF8DC; /* Cream background for contrast */
+}
+
+/* Buttons */
+.button, input[type="submit"], input[type="button"], .submit-row input {
+    background-color: #DC143C !important; /* Red buttons */
+    color: #FFD700 !important; /* Yellow text */
+    border-color: #DC143C !important;
+}
+
+.button:hover, input[type="submit"]:hover, input[type="button"]:hover, .submit-row input:hover {
+    background-color: #FFD700 !important; /* Yellow on hover */
+    color: #DC143C !important; /* Red text */
+}
+
+/* Links */
+a {
+    color: #DC143C !important;
+}
+
+a:hover {
+    color: #FFD700 !important;
+}
+
+/* Table headers */
+th {
+    background-color: #DC143C !important;
+    color: #FFD700 !important;
+}
+
+/* Form elements */
+input[type="text"], input[type="password"], textarea, select {
+    border-color: #DC143C !important;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+    border-color: #FFD700 !important;
+    box-shadow: 0 0 5px #FFD700 !important;
+}
+
+/* Footer */
+#footer {
+    background-color: #DC143C !important;
+    color: #FFD700 !important;
+}

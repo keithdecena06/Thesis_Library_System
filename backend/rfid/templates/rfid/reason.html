@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Purpose of Visit - Tanauan City College</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --primary-maroon: #8B2E31; --accent-pink: #E94B5E; --muted:#f5f5f5; }
+        body { font-family: 'Roboto', Arial, sans-serif; margin:0; height:100vh; display:flex; align-items:center; justify-content:center; background: radial-gradient(circle, #ffffff 0%, #f0f0f0 100%); }
+        .purpose-container { width:100%; max-width:900px; padding:32px; text-align:center; }
+        .purpose-title { color:var(--primary-maroon); font-size:2.2rem; margin:0 0 6px; }
+        .purpose-subtitle { color:#555; margin-bottom:24px; font-size:1.1rem; }
+        .purpose-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+        .purpose-card { background:white; border-radius:12px; padding:24px; box-shadow:0 8px 20px rgba(0,0,0,0.08); text-align:left; border:3px solid transparent; cursor:pointer; transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease; display:flex; flex-direction:column; gap:8px; }
+        .purpose-card i { font-size:2.2rem; color:var(--primary-maroon); }
+        .purpose-card span { font-weight:700; font-size:1.05rem; color:#222; }
+        .purpose-card p { color:#666; margin:0; font-size:0.95rem; }
+        .purpose-card:hover { transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,0.12); border-color: rgba(139,46,49,0.08); }
+
+        .borrow-theme i { color:#2C6BFF; }
+        .research-theme i { color:#4CAF50; }
+        .facility-theme i { color:#FF8A00; }
+
+        .back-btn-kiosk { display:inline-block; margin-top:22px; color:#666; text-decoration:none; padding:8px 16px; border-radius:8px; border:1px solid #eee; }
+
+        form { margin-top:8px; }
+
+        /* Make the whole card submit the form when clicked */
+        .card-btn { background:none; border:0; padding:0; text-align:left; width:100%; }
+
+        /* Small screens tweaks */
+        @media (max-width:420px){ .purpose-title{font-size:1.6rem} }
+    </style>
+</head>
+<body>
+    <div class="purpose-container">
+        <h1 class="purpose-title">Purpose of Visit</h1>
+        <p class="purpose-subtitle">Please select the primary reason for your visit today.</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="purpose-grid">
+                <button type="submit" name="activity" value="Borrowing" class="purpose-card borrow-theme card-btn" aria-label="Borrowing">
+                    <i class="fa-solid fa-book-bookmark"></i>
+                    <span>Borrowing</span>
+                    <p>Requesting or returning books</p>
+                </button>
+
+                <button type="submit" name="activity" value="Reading" class="purpose-card research-theme card-btn" aria-label="Research">
+                    <i class="fa-solid fa-microscope"></i>
+                    <span>Research</span>
+                    <p>Using library resources for study</p>
+                </button>
+
+                <button type="submit" name="activity" value="Facility" class="purpose-card facility-theme card-btn" aria-label="Facility">
+                    <i class="fa-solid fa-building-user"></i>
+                    <span>Facility</span>
+                    <p>Using study areas or laboratories</p>
+                </button>
+            </div>
+        </form>
+
+        <a href="{% url 'idle' %}" class="back-btn-kiosk">Go Back</a>
+    </div>
+</body>
+</html>

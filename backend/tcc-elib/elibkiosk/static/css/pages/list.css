@@ -1,0 +1,143 @@
+/* ===============================
+   LIST WRAPPER
+   =============================== */
+.list-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 12px; 
+  padding-left: 24px;
+}
+
+/* ===============================
+   TITLE
+   =============================== */
+.page-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  letter-spacing: -0.2px; 
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: rgba(0,0,0,0.55);
+  margin-bottom: 24px;
+  max-width: 540px;
+  line-height: 1.45;
+}
+
+/* ===============================
+   FILTER CHIPS
+   =============================== */
+.filter-chips {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.chip {
+  padding: 6px 14px;
+  font-size: 13px;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  color: #333;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.chip.active {
+  background: rgba(162,7,5,0.12);
+  color: #a20705;
+  font-weight: 600;
+  border-color: rgba(162,7,5,0.25);
+}
+
+/* ===============================
+   TABLE HEADER
+   =============================== */
+.list-header {
+  display: grid;
+  grid-template-columns: 3fr 2fr 1fr 1.2fr;
+  padding: 14px 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #7a7a7a;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+/* ===============================
+   LIST BODY
+   =============================== */
+.list-body {
+  max-height: 480px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.list-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.list-body::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.12);
+  border-radius: 6px;
+}
+
+/* ROW */
+.list-row {
+  display: grid;
+  grid-template-columns: 3fr 2fr 1fr 1.2fr;
+  padding: 12px 0;
+  font-size: 14px;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.list-row:hover {
+  background: rgba(0,0,0,0.015);
+}
+
+/* Improve vertical rhythm */
+.list-row:last-child {
+  border-bottom: none;
+}
+
+/* ===============================
+   COLUMN REFINEMENTS
+   =============================== */
+
+.list-row > div:first-child {
+  font-weight: 500;
+  color: #111;
+}
+
+/* STUDENT */
+.list-row > div:nth-child(2) {
+  color: rgba(0,0,0,0.7);
+}
+
+/* YEAR */
+.list-row > div:nth-child(3) {
+  color: rgba(0,0,0,0.6);
+  font-variant-numeric: tabular-nums;
+}
+
+/* CATEGORY */
+.category {
+  font-size: 12.5px;
+  color: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.04);
+  padding: 4px 10px;
+  border-radius: 12px;
+  width: fit-content;
+}
+
+.muted-year {
+  color: #999;
+  font-size: 12px;
+  margin-left: 4px;
+}

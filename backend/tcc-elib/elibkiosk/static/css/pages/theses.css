@@ -1,0 +1,281 @@
+:root {
+    --ios-bg: #f5f5f7;
+    --card-bg: #ffffff;
+    --text-main: #1d1d1f;
+    --text-muted: #86868b;
+    
+    --cpe-color:    #0066cc;  /* Tech Blue */
+    --pa-color:     #3f4f8f;  /* Institutional Indigo */
+    --educ-color:   #2f8f6b;  /* Academic Teal */
+    --entrep-color: #c97700;  /* Innovation Amber */
+    --acct-color:   #2f3e5c;  /* Financial Navy */
+    --best-color:   #8e2a2a;  /* Prestige Wine */
+}
+
+/* MAIN WRAPPER */
+.theses-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 80vh; /* Adjusts nicely within your no-scroll base */
+}
+
+/* HEADER SECTION */
+.header-area {
+    margin-bottom: 35px;
+    border-left: 4px solid var(--best-color);
+    padding-left: 20px;
+    animation: fadeInSlide 0.6s ease-out;
+    height: 70px;
+}
+
+.page-title {
+    font-size: 35px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    color: var(--text-main);
+    margin: 0;
+    line-height: 1.1;
+}
+
+.page-subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 4px;
+}
+
+/* GRID SETUP (3 Columns x 2 Rows) */
+.thesis-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+/* iOS CARD DESIGN */
+.thesis-card {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 28px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    
+    /* Multi-layered Depth Shadows */
+    box-shadow: 
+        0 6px 14px rgba(0,0,0,0.06),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+    border: 1px solid rgba(0,0,0,0.045);
+    
+    /* Transitions for Tapping */
+    transition: transform 0.2s cubic-bezier(0.33, 1, 0.68, 1), background-color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    animation: fadeInSlide 0.5s ease-out backwards;
+}
+
+.thesis-card .card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* TOUCH FEEDBACK (Shrink effect on tap) */
+.thesis-card:active {
+    transform: scale(0.95);
+    background-color: #f2f2f7;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* ICON BOX (iOS Squircle) */
+.icon-box {
+    padding: 12px;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    font-size: 26px;
+    box-shadow:
+    inset 0 1px 2px rgba(255,255,255,0.6),
+    inset 0 -1px 2px rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+/* PROGRAM ICON BOX — FINAL */
+
+.color-cpe .icon-box {
+  background: rgba(0, 102, 204, 0.10);
+  color: var(--cpe-color);
+}
+
+.color-pa .icon-box {
+  background: rgba(63, 79, 143, 0.10);
+  color: var(--pa-color);
+}
+
+.color-educ .icon-box {
+  background: rgba(47, 143, 107, 0.10);
+  color: var(--educ-color);
+}
+
+.color-entrep .icon-box {
+  background: rgba(201, 119, 0, 0.12);
+  color: var(--entrep-color);
+}
+
+.color-acct .icon-box {
+  background: rgba(47, 62, 92, 0.10);
+  color: var(--acct-color);
+}
+
+/* SPECIAL BEST THESES CARD */
+.highlight-card {
+    background: linear-gradient(145deg, #edd3d3, #fff1f1);
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.18),
+        inset 0 0 0 1px rgba(255,255,255,0.12);
+    border: 1px solid rgba(162, 7, 5, 0.15);
+    position: relative;
+}
+
+.highlight-card .icon-box { 
+    background: #fdeaea; 
+    color: var(--best-color); 
+    box-shadow: 0 6px 12px rgba(162, 7, 5, 0.1);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+.highlight-card h3 { color: var(--best-color); }
+
+/* FEATURED BADGE */
+.featured-pill {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+
+  background: rgba(175, 45, 45, 0.12); /* best-color tint */
+  color: var(--best-color);
+
+  border: 1px solid rgba(175, 45, 45, 0.25);
+  pointer-events: none;
+}
+
+/* TEXT STYLES & CLAMPING */
+.thesis-card h3 {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: var(--text-main);
+    letter-spacing: -0.2px;
+}
+
+.thesis-card p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #6b7280;
+    margin: 0;
+    
+    /* Prevent overflowing - Clamps to exactly 2 lines */
+    display: -webkit-box;
+   
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* VIEW MORE CTAs */
+
+.view-more {
+    margin-top: auto;
+    padding-top: 12px;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.thesis-card:active .view-more {
+    transform: translateX(2px);
+    opacity: 1;
+}
+
+.thesis-card.color-cpe .card-content .view-more{
+    color: var(--cpe-color);
+    font-weight: 600;
+    display: inline-block;
+    word-spacing: 3px;
+}
+
+.thesis-card.color-pa .card-content .view-more{
+    color: var(--pa-color);
+    font-weight: 600;
+    display: inline-block;
+    word-spacing: 3px;
+}
+
+.thesis-card.color-educ .card-content .view-more{
+    color: var(--educ-color);
+    font-weight: 600;
+    display: inline-block;
+    word-spacing: 3px;
+}
+
+.thesis-card.color-entrep .card-content .view-more{
+    color: var(--entrep-color);
+    font-weight: 600;
+    display: inline-block;
+    word-spacing: 3px;
+}
+
+.thesis-card.color-acct .card-content .view-more{
+    color: var(--acct-color);
+    font-weight: 600;
+    display: inline-block;
+    word-spacing: 3px;
+}
+
+.thesis-card.highlight-card .card-content .view-more{
+    padding-top: 33px;
+    color: var(--best-color);
+    font-weight: 600;
+    display: inline-block;
+    word-spacing: 3px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Staggered entrance for the cards */
+.thesis-card:nth-child(1) { animation-delay: 0.1s; }
+.thesis-card:nth-child(2) { animation-delay: 0.15s; }
+.thesis-card:nth-child(3) { animation-delay: 0.2s; }
+.thesis-card:nth-child(4) { animation-delay: 0.25s; }
+.thesis-card:nth-child(5) { animation-delay: 0.3s; }
+.thesis-card:nth-child(6) { animation-delay: 0.35s; }
+
+/* ADJUSTMENTS FOR 15.6" LANDSCAPE */
+@media (max-width: 1100px) {
+    .theses-wrap { padding: 20px; }
+    .thesis-grid { gap: 18px; }
+    .thesis-card { padding: 24px; }
+    .page-title { font-size: 28px; }
+}

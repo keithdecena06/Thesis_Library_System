@@ -1,0 +1,41 @@
+{% extends "base/kiosk_base.html" %}
+{% load static %}
+
+{% block title %}Record a Book{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pages/record.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="record-wrap">
+
+  <!-- BACK -->
+  <a href="{% url 'elibrary:home' %}" class="back-btn">← Back</a>
+
+  <!-- HEADER -->
+  <div class="record-header">
+    <h1>Record a Book</h1>
+    <p>Select the book or thesis you’ve read</p>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="record-search">
+    <input
+      id="record-search"
+      type="text"
+      placeholder="Search book or thesis"
+      autocomplete="off"
+    />
+  </div>
+
+  <div class="record-results-wrap">
+    <div id="record-results" class="record-row">
+    </div>
+  </div>
+
+</div>
+
+<script src="{% static 'js/record-search.js' %}"></script>
+{% endblock %}

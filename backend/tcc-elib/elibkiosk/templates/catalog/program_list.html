@@ -1,0 +1,65 @@
+{% extends "base/catalog_base.html" %}
+{% load static %}
+
+{% block title %}{{ program.name }} Books{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pages/list.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="list-wrap">
+
+  <h1 class="page-title">{{ program.name }} Books</h1>
+  <p class="page-subtitle">
+    Available books and references for {{ program.name }} students
+  </p>
+
+  <!-- =========================
+       YEAR FILTER PILLS
+       ========================= -->
+  <div class="filter-chips">
+    <span class="chip active" data-year="all">All</span>
+    <span class="chip" data-year="1">1st Year</span>
+    <span class="chip" data-year="2">2nd Year</span>
+    <span class="chip" data-year="3">3rd Year</span>
+    <span class="chip" data-year="4">4th Year</span>
+  </div>
+
+  <!-- =========================
+       TABLE HEADER
+       ========================= -->
+  <div class="list-header">
+    <span>Title</span>
+    <span>Author</span>
+    <span>Year Level</span>
+    <span>Category</span>
+  </div>
+
+  <!-- =========================
+       SCROLLABLE LIST
+       ========================= -->
+  <div class="list-body">
+
+    {% for book in books %}
+    <div class="list-row"
+         data-year="{{ book.year_level }}">
+      <span>{{ book.title }}<small class="muted-year">({{ book.year_published }})</small></span>
+      <span>{{ book.author }}</span>
+      <span>{{ book.year_level }}</span>
+      <span class="category">{{ book.category }}</span>
+    </div>
+    {% empty %}
+    <div class="list-row empty">
+      <span>No books available for this program.</span>
+    </div>
+    {% endfor %}
+
+  </div>
+
+</div>
+
+<script src="{% static 'js/list-filter.js' %}"></script>
+
+{% endblock %}

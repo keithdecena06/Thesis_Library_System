@@ -1,0 +1,88 @@
+{% extends 'base/catalog_base.html' %}
+{% load static %}
+
+{% block title %}Student Theses{% endblock %}
+
+{% block page_css %}
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<link rel="stylesheet" href="{% static 'css/pages/theses.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="theses-wrap">
+
+  <div class="header-area">
+    <h1 class="page-title">Student Theses</h1>
+    <p class="page-subtitle">Browse student research by academic program or view top theses</p>
+  </div>
+
+  <div class="thesis-grid">
+
+    <a href="/kiosk/catalog/theses/cpe/" class="thesis-card color-cpe">
+      <div class="icon-box"><i class="ph-fill ph-cpu"></i></div>
+      <div class="card-content">
+        <h3>Computer Engineering</h3>
+        <p>IoT systems, Arduino projects, embedded design, and hardware–software integration.</p>
+        <p class="view-more">View theses <span class="arrow">-></span></p>
+      </div>
+    </a>
+
+    <a href="/kiosk/catalog/theses/pa/" class="thesis-card color-pa">
+      <div class="icon-box"><i class="ph-fill ph-buildings"></i></div>
+      <div class="card-content">
+        <h3>Public Administration</h3>
+        <p>Governance, public policy, administrative systems, and national public sector research.</p>
+        <p class="view-more">View theses <span class="arrow">-></span></p>
+      </div>
+    </a>
+
+    <a href="/kiosk/catalog/theses/educ/" class="thesis-card color-educ">
+      <div class="icon-box"><i class="ph-fill ph-chalkboard-teacher"></i></div>
+      <div class="card-content">
+        <h3>Secondary Education</h3>
+        <p>Teaching strategies, curriculum development, pedagogy, and learning systems research.</p>
+        <p class="view-more">View theses <span class="arrow">-></span></p>
+      </div>
+    </a>
+
+    <a href="/kiosk/catalog/theses/entrep/" class="thesis-card color-entrep">
+      <div class="icon-box"><i class="ph-fill ph-lightbulb"></i></div>
+      <div class="card-content">
+        <h3>Entrepreneurship</h3>
+        <p>Business innovation, startup development, enterprise management, and market studies.</p>
+        <p class="view-more">View theses <span class="arrow">-></span></p>
+      </div>
+    </a>
+
+    <a href="/kiosk/catalog/theses/acct/" class="thesis-card color-acct">
+      <div class="icon-box"><i class="ph-fill ph-calculator"></i></div>
+      <div class="card-content">
+        <h3>Management Accounting</h3>
+        <p>Financial reporting, cost analysis, auditing, and strategic management decision systems.</p>
+        <p class="view-more">View theses <span class="arrow">-></span></p>
+      </div>
+    </a>
+
+    <a href="/kiosk/catalog/theses/best/" class="thesis-card highlight-card">
+
+      <!-- FEATURED PILL -->
+      <span class="featured-pill">
+        <i class="ph-fill ph-medal"></i>
+        Featured
+      </span>
+
+      <div class="icon-box">
+        <i class="ph-fill ph-medal"></i>
+      </div>
+
+      <div class="card-content">
+        <h3>Best Theses</h3>
+        <p>Top-rated, most accessed, and outstanding student research.</p>
+        <p class="view-more">View theses <span class="arrow">-></span></p>
+      </div>
+
+    </a>
+
+  </div>
+</div>
+{% endblock %}
