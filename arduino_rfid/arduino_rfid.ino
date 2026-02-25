@@ -13,8 +13,8 @@
 
 // Network settings
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
-IPAddress localIp(192, 168, 0, 101);     // Arduino static IP
-IPAddress serverIp(192, 168, 0, 100);    // Django server
+IPAddress localIp(192, 168, 0, 103);     // Arduino static IP
+IPAddress serverIp(192, 168, 0, 102);    // Django server
 IPAddress gateway(192, 168, 0, 1);
 IPAddress subnet(255, 255, 255, 0);
 
@@ -108,7 +108,7 @@ void sendToServer(const String &rfid_uid) {
   client.print("POST ");
   client.print(PATH);
   client.println(" HTTP/1.1");
-  client.println("Host: 192.168.0.100");  // Django server IP
+  client.println("Host: 192.168.0.102");  // Django server IP
   client.println("Content-Type: application/json");
   client.print("Content-Length: ");
   client.println(payload.length());

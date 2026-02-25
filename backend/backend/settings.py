@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-2kera8zmoi__d308)i_1ui@3=ap&8(#*9$-$kpmbcqut$hty(r
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '192.168.0.100',
+    '192.168.0.102',
     'localhost',
     '127.0.0.1'
 ]
@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'smart_library_db',
+        'NAME': 'rfid_student',
         'USER': 'postgres',
         'PASSWORD': '123456',
         'HOST': 'localhost',

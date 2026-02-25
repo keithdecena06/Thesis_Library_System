@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\Keith\Desktop\smart_library\.venv
+set VIRTUAL_ENV=C:\Users\Client\Desktop\smart_library1.1\Thesis_Library_System\.venv
 
 if not defined PROMPT set PROMPT=$P$G
 
