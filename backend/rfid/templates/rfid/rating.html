@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rate Your Experience</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            background: #f2f2f7;
+            display: grid;
+            place-items: center;   /* 🔥 better than flex for kiosk */
+            color: #1c1c1e;
+            overflow: hidden;      /* 🔥 hard kill scrollbar */
+        }
+
+        /* CARD */
+        .container {
+            width: min(480px, 92vw);   /* 🔥 prevents oversized feel */
+            background: #ffffffcc;
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border-radius: 32px;
+            padding: 42px 32px;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.08);
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* TITLE */
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 25px;
+            letter-spacing: -0.8px;
+        }
+
+        /* INFO BOX */
+        .student-info {
+            background: #f4f4f5;
+            padding: 24px 20px;
+            border-radius: 20px;
+            margin-bottom: 35px;
+            border: 1px solid #e5e5ea;
+        }
+
+        .student-info strong {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1d1d1f;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .student-info p {
+            font-size: 14px;
+            color: #6e6e73;
+            margin: 0;
+        }
+
+        /* STAR RATING */
+        .rating-stars {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin: 30px 0 40px;
+            direction: rtl;
+        }
+
+        .rating-stars input {
+            display: none;
+        }
+
+        .rating-stars label {
+            font-size: 42px;
+            color: #d1d1d6;
+            cursor: pointer;
+            transition: transform 0.18s ease, color 0.18s ease;
+        }
+
+        .rating-stars label:hover {
+            transform: scale(1.15);
+        }
+
+        /* Gold active state */
+        .rating-stars input:checked ~ label,
+        .rating-stars label:hover,
+        .rating-stars label:hover ~ label {
+            color: #ffcc00;
+        }
+
+        /* SUBMIT BUTTON */
+        button {
+            width: 100%;
+            background: #a20705;
+            color: #fff;
+            padding: 18px 0;
+            border: 0;
+            border-radius: 18px;
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+            cursor: pointer;
+            transition: transform .18s ease, box-shadow .18s ease;
+
+            box-shadow:
+                0 0 12px rgba(225, 18, 15, 0.42),
+                0 10px 22px rgba(58, 2, 2, 0.28);
+        }
+
+        button:active {
+            transform: scale(0.97);
+            box-shadow:
+                0 0 8px rgba(225, 18, 15, 0.36),
+                0 8px 18px rgba(58, 2, 2, 0.24);
+        }
+
+        /* ANIMATION */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 7-INCH Display */
+        @media (max-height: 700px) {
+            .container {
+                padding: 35px 26px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .rating-stars label {
+                font-size: 38px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rate Your Library Experience</h1>
+
+        <div class="student-info">
+            <p><strong>Thank you, {{ student.name|truncatewords:1 }}!</strong></p>
+            <p>How would you rate your visit today?</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="rating-stars">
+                <input type="radio" id="star5" name="rating" value="5" required>
+                <label for="star5">★</label>
+                <input type="radio" id="star4" name="rating" value="4">
+                <label for="star4">★</label>
+                <input type="radio" id="star3" name="rating" value="3">
+                <label for="star3">★</label>
+                <input type="radio" id="star2" name="rating" value="2">
+                <label for="star2">★</label>
+                <input type="radio" id="star1" name="rating" value="1">
+                <label for="star1">★</label>
+            </div>
+
+            <button type="submit">Submit Rating</button>
+        </form>
+    </div>
+</body>
+</html>
