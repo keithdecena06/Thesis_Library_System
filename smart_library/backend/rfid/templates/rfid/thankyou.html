@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You!</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            background: #f2f2f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+            color: #1c1c1e;
+            overflow: hidden;
+        }
+
+        /* MAIN CARD */
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: #ffffffcc;
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border-radius: 32px;
+            padding: 45px 34px 40px;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.08);
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* TITLE */
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 25px;
+            letter-spacing: -0.8px;
+        }
+
+        .thankyou-message {
+            background: #f4f4f5;
+            padding: 24px 20px;
+            border-radius: 20px;
+            margin-bottom: 35px;
+            border: 1px solid #e5e5ea;
+        }
+
+        .thankyou-message p {
+            margin: 8px 0;
+            font-size: 16px;
+            color: #1d1d1f;
+            line-height: 1.5;
+            letter-spacing: -0.2px;
+        }
+
+        /* HIGHLIGHT STYLE */
+        .highlight {
+            color: #a20705; 
+            font-weight: 600;
+            font-size: 18px !important;
+            display: block;
+            margin: 12px 0 !important;
+        }
+
+        .sub-text {
+            font-size: 14px !important;
+            color: #6e6e73 !important;
+        }
+
+        .return-button {
+            display: block;
+            width: 100%;
+            background: #a20705;
+            color: #fff;
+            padding: 18px 0;
+            border: 0;
+            border-radius: 18px;
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: -0.2px;
+            cursor: pointer;
+            transition: transform .18s ease, box-shadow .18s ease;
+
+            /* Your exact balanced red glow */
+            box-shadow: 
+                0 0 12px rgba(225, 18, 15, 0.42), 
+                0 10px 22px rgba(58, 2, 2, 0.28);
+        }
+
+        .return-button:active {
+            transform: scale(0.97);
+            box-shadow: 
+                0 0 8px rgba(225, 18, 15, 0.36), 
+                0 8px 18px rgba(58, 2, 2, 0.24);
+        }
+
+        /* ANIMATION */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 7-INCH DISPLAY / MOBILE */
+        @media (max-width: 600px) {
+            h1 { font-size: 28px; }
+            .container { padding: 35px 26px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Thank You!</h1>
+
+        <div class="thankyou-message">
+            <p>Thank you for using the<br><strong>Tanauan City College Library System</strong>.</p>
+            <p class="highlight">We hope to see you again soon!</p>
+            <p class="sub-text">Your feedback helps us improve our services.</p>
+        </div>
+
+        <a href="{% url 'idle' %}" class="return-button">Ready for Next User</a>
+    </div>
+
+    <script>
+        // Auto-redirect to idle page after 10 seconds
+        setTimeout(function() {
+            window.location.href = "{% url 'idle' %}";
+        }, 10000);
+    </script>
+</body>
+</html>
