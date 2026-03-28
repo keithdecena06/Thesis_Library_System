@@ -37,8 +37,7 @@ def idle(request):
                     
                     if last_in_manila < today_manila:
                         # Previous day IN without OUT - auto close it and start new session
-                        program = student.program
-                        AttendanceLog.objects.create(student=student, action='OUT', program=program)
+                        AttendanceLog.objects.create(student=student, action='OUT', activity=last_log.activity, program=last_log.program)
                         # Now proceed with new IN session
                         return redirect('reason', student_id=student.student_id)
                     else:
@@ -82,8 +81,7 @@ def rfid_log(request):
                 
                 if last_in_manila < today_manila:
                     # Previous day IN without OUT - auto close it and start new session
-                    program = student.program
-                    AttendanceLog.objects.create(student=student, action='OUT', program=program)
+                    AttendanceLog.objects.create(student=student, action='OUT', activity=last_log.activity, program=last_log.program)
                     # Now proceed with new IN session
                     result = {
                         'status': 'success',
@@ -169,7 +167,7 @@ def rating(request, student_id):
         # Create OUT entry when rating is submitted (during logout)
         last_log = AttendanceLog.objects.filter(student=student).order_by('-timestamp').first()
         if last_log and last_log.action == 'IN':
-            AttendanceLog.objects.create(student=student, action='OUT')
+            AttendanceLog.objects.create(student=student, action='OUT', activity=last_log.activity, program=last_log.program)
         return redirect('thankyou')
     return render(request, 'rfid/rating.html', {'student': student})
 

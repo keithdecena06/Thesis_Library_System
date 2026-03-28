@@ -26,7 +26,8 @@ class Command(BaseCommand):
         
         # Create OUT entries for all open sessions
         for student in open_sessions:
-            AttendanceLog.objects.create(student=student, action='OUT')
+            last_log = AttendanceLog.objects.filter(student=student).order_by('-timestamp').first()
+            AttendanceLog.objects.create(student=student, action='OUT', activity=last_log.activity, program=last_log.program)
             self.stdout.write(
                 self.style.SUCCESS(f'Automatically closed session for {student.name} ({student.student_id})')
             )
