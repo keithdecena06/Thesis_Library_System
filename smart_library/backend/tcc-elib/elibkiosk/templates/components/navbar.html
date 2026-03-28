@@ -1,0 +1,28 @@
+{% load static %}
+
+<header class="kiosk-navbar">
+  <div class="nav-left">
+    <img src="{% static 'images/logo.png' %}" alt="elib Logo" class="nav-logo">
+    <span class="nav-title">Tanauan City College: e-Library</span>
+  </div>
+
+  <div class="nav-right">
+  {% if request.session.rfid_user_id %}
+
+    <span class="nav-user">
+      <i class="ph ph-user"></i>
+      {{ request.session.rfid_user_id_number }}
+    </span>
+
+    <button class="nav-logout" onclick="logoutUser()">
+      <i class="ph ph-sign-out"></i>
+      Exit
+    </button>
+
+  {% else %}
+    <span id="live-datetime" class="nav-datetime"></span>
+  {% endif %}
+</div>
+  
+</header>
+

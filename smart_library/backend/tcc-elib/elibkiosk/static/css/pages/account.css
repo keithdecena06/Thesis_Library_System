@@ -1,0 +1,590 @@
+:root {
+  --bg: #f5f5f7;
+  --card: #ffffff;
+  --text: #1d1d1f;
+  --muted: #6e6e73;
+  --border: rgba(0, 0, 0, 0.06);
+  --border-soft: rgba(0, 0, 0, 0.04);
+
+  --primary: #b30b0b;
+  --primary-dark: #980909;
+  --primary-soft: rgba(179, 11, 11, 0.08);
+
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 10px 26px rgba(0, 0, 0, 0.06);
+
+  --radius-xl: 28px;
+  --radius-lg: 22px;
+  --radius-md: 18px;
+  --radius-pill: 999px;
+}
+
+.theme-dark {
+  --bg: #0f0f10;
+  --card: #171718;
+  --text: #f4f4f5;
+  --muted: #a1a1aa;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-soft: rgba(255, 255, 255, 0.05);
+
+  --primary: #e23b3b;
+  --primary-dark: #c92e2e;
+  --primary-soft: rgba(226, 59, 59, 0.16);
+
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 14px 36px rgba(0, 0, 0, 0.35);
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+}
+
+.account-shell {
+  height: calc(100vh - 78px);
+  overflow: hidden;
+}
+
+.account-wrap {
+  max-width: 1360px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 22px 32px 28px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  min-height: 44px;
+  padding: 0 18px;
+  margin-bottom: 18px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  color: var(--primary);
+  border-color: rgba(179, 11, 11, 0.15);
+  transform: translateX(-1px);
+}
+
+.account-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.account-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
+.avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.account-greeting {
+  margin: 0;
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.account-meta {
+  margin: 8px 0 0;
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.account-right {
+  flex-shrink: 0;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-label {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.switch {
+  position: relative;
+  width: 50px;
+  height: 28px;
+  display: inline-block;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.18);
+  transition: background 0.25s ease;
+  cursor: pointer;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
+  transition: transform 0.25s ease;
+}
+
+.switch input:checked + .slider {
+  background: var(--primary);
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(22px);
+}
+
+.theme-dark .slider {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.account-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  min-height: 38px;
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.filter-pill:hover {
+  background: var(--primary-soft);
+}
+
+.filter-pill.active {
+  border-color: rgba(179, 11, 11, 0.35);
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.account-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 26px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.account-panel {
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  padding: 28px 28px 22px;
+  overflow: hidden;
+}
+
+.panel-head {
+  flex-shrink: 0;
+  margin-bottom: 8px;
+}
+
+.panel-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.activity-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+  margin-top: 6px;
+}
+
+.activity-scroll::-webkit-scrollbar,
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.activity-scroll::-webkit-scrollbar-thumb,
+.modal-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+}
+
+.activity-scroll::-webkit-scrollbar-track,
+.modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.theme-dark .activity-scroll::-webkit-scrollbar-thumb,
+.theme-dark .modal-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.recent-item {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.recent-item:last-child {
+  border-bottom: none;
+}
+
+.item-title {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.item-author {
+  margin: 8px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.empty-text {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.expand-btn {
+  flex-shrink: 0;
+  margin-top: 18px;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.expand-btn:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-color: rgba(179, 11, 11, 0.18);
+}
+
+.account-stats {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  padding: 28px;
+}
+
+.stat-label {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.stat-value {
+  margin: 14px 0 0;
+  font-size: 56px;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* MODAL */
+.activity-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(15, 15, 15, 0.22);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.activity-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.activity-modal-card {
+  width: min(940px, 100%);
+  height: min(82vh, 760px);
+  background: var(--card);
+  border: 1px solid var(--border-soft);
+  border-radius: 32px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+  padding: 26px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.97);
+  transition: transform 0.22s ease;
+}
+
+.activity-modal.active .activity-modal-card {
+  transform: scale(1);
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  flex-shrink: 0;
+}
+
+.modal-eyebrow {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.close-modal {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.close-modal:hover {
+  color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.modal-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px;
+}
+
+.modal-activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 2px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.modal-activity-item:last-child {
+  border-bottom: none;
+}
+
+.modal-activity-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.modal-activity-icon.is-recorded {
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+}
+
+.modal-activity-icon.is-saved {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.modal-activity-body {
+  min-width: 0;
+}
+
+.modal-activity-title {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.45;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.modal-activity-meta {
+  margin: 7px 0 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.modal-empty {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+@media (max-width: 1024px) {
+  html,
+  body {
+    overflow: auto;
+  }
+
+  .account-shell {
+    height: auto;
+    overflow: visible;
+  }
+
+  .account-wrap {
+    height: auto;
+    overflow: visible;
+  }
+
+  .account-grid {
+    grid-template-columns: 1fr;
+    overflow: visible;
+  }
+
+  .account-panel {
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 768px) {
+  .account-wrap {
+    padding: 18px 18px 24px;
+  }
+
+  .account-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .account-greeting {
+    font-size: 30px;
+  }
+
+  .account-meta {
+    font-size: 14px;
+  }
+
+  .avatar {
+    width: 58px;
+    height: 58px;
+    font-size: 18px;
+  }
+
+  .stat-value {
+    font-size: 44px;
+  }
+
+  .activity-modal-card {
+    height: min(86vh, 760px);
+    border-radius: 26px;
+    padding: 22px 20px 20px;
+  }
+
+  .modal-header h2 {
+    font-size: 22px;
+  }
+
+  .modal-activity-title {
+    font-size: 15px;
+  }
+}

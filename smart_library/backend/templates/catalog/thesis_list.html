@@ -1,0 +1,107 @@
+{% extends "base/catalog_base.html" %}
+{% load static %}
+
+{% block title %}
+  {% if program %}{{ program.name }} Theses{% else %}Best Theses{% endif %}
+{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pages/list.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="list-wrap">
+
+  <div class="page-hero">
+    <h1 class="page-title">
+      {% if program %}
+        {{ program.name }} Theses
+      {% else %}
+        Best Theses
+      {% endif %}
+    </h1>
+
+    <p class="page-subtitle">
+      {% if program %}
+        Browse undergraduate research projects and academic outputs for {{ program.name }}
+      {% else %}
+        A curated collection of outstanding undergraduate research projects
+      {% endif %}
+    </p>
+  </div>
+
+  <div class="list-topbar">
+    <div class="list-meta">
+      <span class="list-count" id="listCount">
+        {{ books|length }} book{{ books|length|pluralize }} available
+      </span>
+    </div>
+
+    <div class="list-tools">
+      <input
+        type="text"
+        class="list-search"
+        id="bookSearch"
+        placeholder="Search title or author..."
+        autocomplete="off"
+      >
+    </div>
+  </div>
+
+  
+  <div class="filter-chips">
+    <button type="button" class="chip active" data-year="all">All</button>
+
+    {% for year in years %}
+      <button type="button" class="chip" data-year="{{ year }}">{{ year }}</button>
+    {% endfor %}
+  </div>
+
+  <div class="list-shell">
+    <div class="list-header">
+      <span>Title</span>
+      <span>Student</span>
+      <span>Year</span>
+      <span>Category</span>
+    </div>
+
+    <div class="list-body" id="thesisList">
+      {% for thesis in theses %}
+      <div
+        class="list-row"
+        data-year="{{ thesis.year }}"
+        data-title="{{ thesis.title|lower }}"
+        data-student="{{ thesis.student_name|lower }}"
+        data-category="{{ thesis.category|lower }}"
+      >
+        <div class="item-title-cell">
+          <span class="item-title">{{ thesis.title }}</span>
+        </div>
+
+        <div class="item-meta-cell">
+          {{ thesis.student_name }}
+        </div>
+
+        <div class="item-year-cell">
+          {{ thesis.year }}
+        </div>
+
+        <div class="item-category-cell">
+          <span class="category category-{{ thesis.category|lower|slugify }}">
+            {{ thesis.category }}
+          </span>
+        </div>
+      </div>
+      {% empty %}
+      <div class="empty-state">
+        <h3>No theses available yet</h3>
+        <p>There are currently no theses listed for this section.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,296 @@
+/* ======================================================
+   HOME WRAPPER
+   ====================================================== */
+.home-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+}
+
+/* ======================================================
+   CENTER WRAPPER
+   ====================================================== */
+.center-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  /* balanced vertical rhythm */
+  padding: 64px 0 80px;
+}
+
+/* ======================================================
+   SEARCH (MOVED DOWN USING SPACING ONLY)
+   ====================================================== */
+.center-search {
+  margin-top: 38px;
+  margin-bottom: 0px;
+  width: 460px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  background: #fff;
+  padding: 14px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.center-search i {
+  font-size: 20px;
+  color: #a20705;
+}
+
+.center-search input {
+  border: none;
+  outline: none;
+  margin-left: 12px;
+  font-size: 17px;
+  width: 100%;
+  background: transparent;
+}
+
+/* SEARCH SUGGESTIONS WRAPPER */
+.search-suggestions {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  z-index: 20;
+  overflow: hidden;
+}
+
+/* SINGLE RESULT */
+.search-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 18px;
+  cursor: pointer;
+
+  transition: background 0.15s ease;
+}
+
+.search-item:hover {
+  background: rgba(0,0,0,0.04);
+}
+
+/* TITLE */
+.search-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
+  text-align: left;
+  max-width: 75%;
+  line-height: 1.4;
+}
+
+/* TYPE PILL */
+.search-pill {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* BOOK PILL */
+.search-pill.book {
+  background: rgba(162,7,5,0.1);
+  color: #a20705;
+}
+
+/* THESIS PILL */
+.search-pill.thesis {
+  background: rgba(0,0,0,0.08);
+  color: #444;
+}
+
+/* ======================================================
+   HOME TEXT
+   ====================================================== */
+.home-title {
+  font-size: 38px;
+  font-weight: 600;
+  margin-top: 38px;
+  margin-bottom: 12px;
+}
+
+.home-subtitle {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 18px;
+  color: #555;
+}
+
+.home-helper {
+  margin-top: 48px;
+  font-size: 13px;
+  color: #999;
+}
+
+/* ======================================================
+   HOME CARDS GRID
+   ====================================================== */
+.card-grid {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 260px);
+  gap: 32px;
+  position: relative;
+}
+
+/* soft glass base behind cards */
+.card-grid::before {
+  content: "";
+  position: absolute;
+  inset: -20px -28px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 32px;
+  z-index: -1;
+}
+
+/* ======================================================
+   ACTION CARDS
+   ====================================================== */
+.action-card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 44px 32px;
+
+  border: 1px solid rgba(0,0,0,0.03);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.08);
+
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.action-card i {
+  font-size: 48px;
+  color: #a20705;
+  margin-bottom: 20px;
+}
+
+.action-card h3 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.action-card p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* kiosk-friendly feedback */
+.action-card:active {
+  transform: scale(0.965);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+.action-card:first-child {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.095);
+}
+
+/* ==========================
+   PREMIUM RFID MODAL
+   ========================== */
+
+.rfid-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  transition: opacity 0.3s ease;
+}
+
+.rfid-modal.hidden {
+  display: none;
+}
+
+.rfid-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 35px;
+  padding: 50px 40px;
+  width: 350px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ICON CONTAINER */
+.rfid-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 25px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* ICON */
+.rfid-icon i {
+  font-size: 40px;
+  color: white;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* SCANNING STATE */
+.rfid-icon.scanning {
+  background: #007AFF;
+  box-shadow: 0 0 25px rgba(0, 122, 255, 0.4);
+  animation: pulse 1.8s infinite ease-in-out;
+}
+
+/* SUCCESS STATE */
+.rfid-icon.success {
+  background: #34C759;
+  box-shadow: 0 0 25px rgba(52, 199, 89, 0.4);
+  animation: successPop 0.4s ease forwards;
+}
+
+/* TEXT */
+.rfid-card h2 {
+  font-size: 26px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.rfid-card p {
+  font-size: 15px;
+  color: #3a3a3c;
+}
+
+/* ANIMATIONS */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.9; }
+}
+
+@keyframes successPop {
+  0% { transform: scale(0.8); }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}

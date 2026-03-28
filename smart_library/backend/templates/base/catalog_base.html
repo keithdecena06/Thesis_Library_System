@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}TCC e-Library{% endblock %}</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://unpkg.com/phosphor-icons@1.4.2/src/css/icons.css">
+
+  <!-- BASE CSS -->
+  <link rel="stylesheet" href="{% static 'css/base/kiosk-base.css' %}">
+
+  {% block page_css %}{% endblock %}
+</head>
+
+<body>
+
+  {% include 'components/navbar.html' %}
+
+  <div class="catalog-layout">
+
+    {% include 'components/sidebar.html' %}
+
+    <main class="catalog-content">
+      {% block content %}{% endblock %}
+    </main>
+
+  </div>
+
+  <!-- RFID MODAL -->
+  <div id="rfid-modal" class="rfid-modal hidden">
+    <div class="rfid-card">
+
+      <div class="rfid-icon scanning" id="rfidIcon">
+        <i class="ph ph-credit-card" id="rfidIconSymbol"></i>
+      </div>
+
+      <h2 id="rfid-title"></h2>
+      <p id="rfid-sub"></p>
+
+    </div>
+  </div>
+
+  <script>
+    var loginStatus = "{{ request.session.rfid_user_id|yesno:'true,false' }}";
+    window.IS_LOGGED_IN = (loginStatus === "true");
+  </script>
+
+  <script src="{% static 'js/list-filter.js' %}"></script>
+  <script src="{% static 'js/rfid-modal.js' %}"></script>
+  <script src="{% static 'js/idle.js' %}"></script>
+
+  <script>
+function updateClock() {
+  const el = document.getElementById("live-datetime");
+  if (!el) return; // 💥 para safe kahit wala sa ibang page
+
+  const now = new Date();
+
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const day = days[now.getDay()];
+
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  const month = months[now.getMonth()];
+
+  const date = now.getDate();
+  const year = now.getFullYear();
+
+  let hours = now.getHours();
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  const seconds = String(now.getSeconds()).padStart(2, "0");
+
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12;
+
+  el.textContent =
+    `${day} | ${month} ${date}, ${year} ${hours}:${minutes}:${seconds} ${ampm}`;
+}
+
+// run + loop
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>

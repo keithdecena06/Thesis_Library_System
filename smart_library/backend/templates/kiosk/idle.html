@@ -1,0 +1,141 @@
+{% extends "base/kiosk_base.html" %}
+{% load static %}
+
+{% block navbar %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pages/idle.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="idle-wrapper" id="kioskScreen">
+  <div class="idle-bg"></div>
+  <div class="idle-overlay"></div>
+
+  <div class="hud-container">
+    <div class="hud-left">
+      <h1 class="hud-time" id="heroTime">7:10 AM</h1>
+      <p class="hud-date" id="heroDate">Friday, January 26, 2018</p>
+    </div>
+    
+    <div class="hud-right">
+      <div class="hud-title-group">
+        <h2 class="hud-title">TCC e-Library</h2>
+        <p class="hud-subtitle">Digital Knowledge Hub</p>
+      </div>
+      <img src="{% static 'images/logo.png' %}" alt="TCC Logo" class="hud-logo">
+    </div>
+  </div>
+
+  <div class="tap-prompt">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3v12"></path>
+    <path d="M8 11l4 4 4-4"></path>
+  </svg>
+  <span>Tap anywhere to begin</span>
+ </div>
+
+  <div class="bottom-panel">
+    
+    <div class="panel-left">
+      <div class="greeting-icon">
+        <div class="sun-circle"></div>
+      </div>
+      <div class="greeting-text-group">
+        <div class="greet-main" id="greetingText">Good morning</div>
+        <div class="greet-sub">Tap to access books, theses, and resources</div>
+      </div>
+    </div>
+
+    <div class="panel-right">
+      
+      <div class="stat-item">
+        <div class="stat-icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <div class="stat-data">
+          <span class="stat-label">Status</span>
+          <span class="stat-value">
+            <span class="status-dot"></span>Ready for use
+          </span>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+        </div>
+        <div class="stat-data">
+          <span class="stat-label">Library Mode</span>
+          <span class="stat-value">Idle Display</span>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+          </svg>
+        </div>
+        <div class="stat-data">
+          <span class="stat-label">Touch Access</span>
+          <span class="stat-value">Enabled</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  function updateIdleScreen() {
+    const now = new Date();
+    const timeEl = document.getElementById("heroTime");
+    const dateEl = document.getElementById("heroDate");
+    const greetingEl = document.getElementById("greetingText");
+
+    // Formatted Time (e.g., 7:10 AM)
+    const timeFormatted = now.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true
+    });
+
+    // Formatted Date (e.g., Friday, January 26, 2018)
+    const dateFormatted = now.toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+
+    // Dynamic Greeting
+    let greeting = "Good evening";
+    const hour = now.getHours();
+    if (hour >= 5 && hour < 12) {
+      greeting = "Good morning";
+    } else if (hour >= 12 && hour < 18) {
+      greeting = "Good afternoon";
+    }
+
+    timeEl.textContent = timeFormatted;
+    dateEl.textContent = dateFormatted;
+    greetingEl.textContent = greeting;
+  }
+
+  updateIdleScreen();
+  setInterval(updateIdleScreen, 1000);
+
+  // Click anywhere to enter the app
+  document.getElementById("kioskScreen").addEventListener("click", () => {
+    window.location.href = "/kiosk/";
+  });
+</script>
+{% endblock %}

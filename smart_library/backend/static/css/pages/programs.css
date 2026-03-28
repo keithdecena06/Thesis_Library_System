@@ -1,0 +1,424 @@
+:root {
+    --ios-bg: #f5f5f7;
+    --text-main: #1d1d1f;
+    --text-muted: #86868b;
+    --crimson: #a20705;
+
+    /* Academic Colors */
+    --cpe: #0066cc;
+    --pa: #3f4f8f;
+    --educ: #2f8f6b;
+    --entrep: #c97700;
+    --acct: #2f3e5c;
+}
+
+/* ======================================================
+   CONTAINER
+   ====================================================== */
+
+.ios-container {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+}
+
+/* ======================================================
+   HEADER
+   ====================================================== */
+
+.header-area {
+    margin-bottom: 30px;
+    border-left: 4px solid var(--crimson);
+    padding-left: 20px;
+    animation: fadeInSlide 0.6s ease-out;
+    height: 70px;
+}
+
+.page-title {
+    font-size: 35px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    color: var(--text-main);
+    margin: 0;
+    line-height: 1.1;
+}
+
+.page-subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 4px;
+}
+
+/* ======================================================
+   PROGRAM GRID
+   ====================================================== */
+
+.ios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 22px;
+}
+
+/* ======================================================
+   PROGRAM CARDS (SUBTLE GRADIENT + GRAY BORDER)
+   ====================================================== */
+
+.ios-card {
+    background: linear-gradient(
+        135deg,
+        var(--tint-bg),
+        #ffffff 65%
+    );
+    border-radius: 24px;
+    padding: 28px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    border: 1px solid rgba(0,0,0,0.08);
+
+    box-shadow:
+        0 6px 14px rgba(0,0,0,0.06),
+        0 2px 4px rgba(0,0,0,0.04);
+
+    transition:
+        transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1),
+        box-shadow 0.25s ease;
+
+    animation: fadeInSlide 0.5s ease-out backwards;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ios-card:active {
+    transform: scale(0.965);
+    box-shadow:
+        0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* ======================================================
+   PROGRAM COLOR THEMES (SUBTLE)
+   ====================================================== */
+
+.theme-cpe {
+    --theme-color: var(--cpe);
+    --tint-bg: rgba(77, 130, 184, 0.1);
+}
+
+.theme-pa {
+    --theme-color: var(--pa);
+    --tint-bg: rgba(102, 100, 174, 0.1);
+}
+
+.theme-educ {
+    --theme-color: var(--educ);
+    --tint-bg: rgba(86, 154, 103, 0.1);
+}
+
+.theme-entrep {
+    --theme-color: var(--entrep);
+    --tint-bg: rgba(153, 130, 94, 0.1);
+}
+
+.theme-acct {
+    --theme-color: var(--acct);
+    --tint-bg: rgba(142,142,147,0.10);
+}
+
+.theme-other {
+    --theme-color: #c7c7cc;
+    --tint-bg: rgba(199,199,204,0.12);
+}
+
+/* ======================================================
+   ICON BOX
+   ====================================================== */
+
+.icon-box {
+    width: 58px;
+    height: 58px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+    background: var(--tint-bg);
+    color: var(--theme-color);
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,0.6),
+        inset 0 -1px 2px rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+/* ======================================================
+   CARD TEXT
+   ====================================================== */
+
+.card-content h3 {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.card-content p {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* ======================================================
+   FEATURED SECTION
+   ====================================================== */
+
+.featured-section {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin: 0 0 28px;
+    align-items: stretch;
+}
+
+/* kapag iisa lang ang card, full width pa rin */
+.featured-section > .featured-card:only-child {
+    grid-column: 1 / -1;
+}
+
+/* ======================================================
+   FEATURED CARD
+   ====================================================== */
+
+.featured-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    min-height: 220px;
+    padding: 28px 30px;
+    box-shadow:
+        0 16px 32px rgba(0,0,0,0.14),
+        inset 0 1px 0 rgba(255,255,255,0.16);
+    animation: fadeInSlide 0.55s ease-out backwards;
+}
+
+.featured-card.theme-crimson {
+    background: linear-gradient(135deg, #8f3742 0%, #b86573 100%);
+}
+
+.featured-card.theme-indigo {
+    background: linear-gradient(135deg, #5e7fb3 0%, #89a9da 100%);
+}
+
+.featured-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.18), transparent 52%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.10), transparent 58%);
+    pointer-events: none;
+}
+
+/* ======================================================
+   BADGE
+   ====================================================== */
+
+.featured-badge {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    z-index: 2;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 9px 16px;
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(0,0,0,0.06);
+    color: #1d1d1f;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.featured-badge i {
+    font-size: 13px;
+}
+
+/* ======================================================
+   CONTENT
+   ====================================================== */
+
+.featured-content {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    min-height: 100%;
+    padding-top: 26px;
+}
+
+.featured-icon-box {
+    width: 108px;
+    height: 108px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 28px;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.16);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        0 10px 24px rgba(0,0,0,0.10);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.featured-icon-box i {
+    font-size: 48px;
+    color: #ffffff;
+}
+
+.featured-details {
+    min-width: 0;
+    max-width: 70%;
+}
+
+.featured-details h3 {
+    margin: 0 0 10px;
+    color: #ffffff;
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.featured-details p {
+    margin: 0;
+    color: rgba(255,255,255,0.90);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.45;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
+
+@media (max-width: 1100px) {
+    .featured-section {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-card {
+        min-height: 200px;
+    }
+}
+
+@media (max-width: 700px) {
+    .featured-card {
+        padding: 22px 20px;
+        min-height: 180px;
+        border-radius: 24px;
+    }
+
+    .featured-badge {
+        position: static;
+        margin-bottom: 14px;
+        width: fit-content;
+    }
+
+    .featured-content {
+        padding-top: 0;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+    .featured-icon-box {
+        width: 78px;
+        height: 78px;
+        border-radius: 20px;
+    }
+
+    .featured-icon-box i {
+        font-size: 34px;
+    }
+
+    .featured-details {
+        max-width: 100%;
+    }
+
+    .featured-details h3 {
+        font-size: 18px;
+    }
+
+    .featured-details p {
+        font-size: 14px;
+    }
+}
+
+/* ======================================================
+   ANIMATIONS
+   ====================================================== */
+
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* STAGGER */
+.ios-card:nth-child(1) { animation-delay: 0.1s; }
+.ios-card:nth-child(2) { animation-delay: 0.15s; }
+.ios-card:nth-child(3) { animation-delay: 0.2s; }
+.ios-card:nth-child(4) { animation-delay: 0.25s; }
+.ios-card:nth-child(5) { animation-delay: 0.3s; }
+.ios-card:nth-child(6) { animation-delay: 0.35s; }
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
+
+@media (max-width: 1100px) {
+    .ios-container { padding: 20px; }
+    .ios-grid { gap: 15px; }
+    .page-title { font-size: 28px; }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.ios-container {
+  box-sizing: border-box;
+  width: 100%;
+}

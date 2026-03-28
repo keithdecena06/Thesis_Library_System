@@ -1,0 +1,83 @@
+{% extends "base/kiosk_base.html" %}
+{% load static %}
+
+{% block title %}Record a Book{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pages/record.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="record-page">
+  <div class="record-wrap">
+
+    <!-- TOP BAR -->
+    <div class="record-topbar">
+      <a href="{% url 'elibrary:home' %}" class="back-btn" aria-label="Go back to home">
+        <span class="back-icon">←</span>
+        <span>Back</span>
+      </a>
+    </div>
+
+    <!-- HEADER -->
+    <div class="record-header">
+      <span class="record-eyebrow">Library Activity</span>
+      <h1>Record a Book</h1>
+      <p>Select a book or thesis you’ve finished reading and save it to your activity.</p>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="record-search-wrap">
+      <div class="record-search">
+        <span class="search-icon">⌕</span>
+        <input
+          id="record-search"
+          type="text"
+          placeholder="Search by title, author, or keyword"
+          autocomplete="off"
+          aria-label="Search book or thesis"
+        />
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="record-results-section">
+      <div class="record-results-head">
+        <h2>Available Titles</h2>
+        <p id="record-count">Browse and select an item to record.</p>
+      </div>
+
+      <div id="record-results" class="record-grid">
+        <!-- Sample card structure from JS -->
+        <!--
+        <article class="record-card">
+          <div class="record-card-top">
+            <span class="record-type">Book</span>
+          </div>
+
+          <div class="record-card-body">
+            <h3 class="record-title">Government Accounting Edition 11</h3>
+            <p class="record-meta">Wong, Mei</p>
+          </div>
+
+          <div class="record-actions">
+            <button class="record-btn">Record</button>
+            <button class="save-btn">Save</button>
+          </div>
+        </article>
+        -->
+      </div>
+
+      <!-- Optional empty state -->
+      <div id="record-empty" class="record-empty" hidden>
+        <div class="record-empty-icon"></div>
+        <h3>No matching titles found</h3>
+        <p>Try searching with a different keyword, author name, or title.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="{% static 'js/record-search.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,140 @@
+{% extends "base/kiosk_base.html" %}
+{% load static %}
+
+{% block title %}My Account{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/pages/account.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="account-shell">
+  <div class="account-wrap">
+    <a href="javascript:history.back()" class="back-btn">← Back</a>
+
+    <div class="account-header">
+      <div class="account-left">
+        <div class="avatar">
+          {{ user.full_name|slice:":1" }}
+        </div>
+
+        <div>
+          <h1 class="account-greeting">
+            Welcome, {{ user.id_number }}
+          </h1>
+          <p class="account-meta">
+            {{ user.role|title }} • {{ user.program.name }} •
+            Year {{ user.year_level }} • Section {{ user.section }}
+          </p>
+        </div>
+      </div>
+
+      <div class="account-right">
+        <div class="theme-toggle">
+          <span class="theme-label">Dark Mode</span>
+          <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="account-filters">
+      <button class="filter-pill active" data-filter="all">All</button>
+      <button class="filter-pill" data-filter="recorded">Recorded</button>
+      <button class="filter-pill" data-filter="saved">Saved</button>
+    </div>
+
+    <div class="account-grid">
+      <div class="account-panel">
+        <div class="panel-head">
+          <h2 class="panel-title">Recent Activity</h2>
+        </div>
+
+        <div class="activity-scroll">
+          {% if activities %}
+            {% for a in activities %}
+              <div class="recent-item"
+                   data-type="{{ a.action }}"
+                   data-content="{{ a.content_type }}">
+
+                <p class="item-title">
+                  {% if a.action == "recorded" %}
+                    ✔ Recorded
+                  {% else %}
+                    ★ Saved
+                  {% endif %}
+                  — {{ a.title }}
+                </p>
+
+                <p class="item-author">
+                  {{ a.meta }} • {{ a.created_at|date:"M d, Y — h:i A" }}
+                </p>
+              </div>
+            {% endfor %}
+          {% else %}
+            <p class="empty-text">No activity yet.</p>
+          {% endif %}
+        </div>
+
+        <button class="expand-btn" type="button">View Full Activity</button>
+      </div>
+
+      <div class="account-stats">
+        <div class="stat-card">
+          <p class="stat-label">Total Activity</p>
+          <p class="stat-value">{{ activities|length }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FULL ACTIVITY MODAL -->
+<div class="activity-modal" id="activityModal">
+  <div class="activity-modal-card">
+    <div class="modal-header">
+      <div>
+        <p class="modal-eyebrow">Activity History</p>
+        <h2>Full Activity</h2>
+      </div>
+      <button class="close-modal" id="closeModal" type="button" aria-label="Close modal">✕</button>
+    </div>
+
+    <div class="modal-content" id="modalContent">
+      {% if activities %}
+        {% for a in activities %}
+          <div class="modal-activity-item" data-type="{{ a.action }}">
+            <div class="modal-activity-icon {% if a.action == 'recorded' %}is-recorded{% else %}is-saved{% endif %}">
+              {% if a.action == "recorded" %}✔{% else %}★{% endif %}
+            </div>
+
+            <div class="modal-activity-body">
+              <p class="modal-activity-title">
+                {% if a.action == "recorded" %}
+                  Recorded
+                {% else %}
+                  Saved
+                {% endif %}
+                — {{ a.title }}
+              </p>
+
+              <p class="modal-activity-meta">
+                {{ a.meta }} • {{ a.created_at|date:"M d, Y — h:i A" }}
+              </p>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="modal-empty">
+          <p>No activity yet.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'js/account-filters.js' %}"></script>
+<script src="{% static 'js/theme-toggle.js' %}"></script>
+{% endblock %}

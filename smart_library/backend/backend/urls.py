@@ -22,4 +22,5 @@ urlpatterns = [
     path('', views.idle, name='home'),
     path('admin/', admin.site.urls),
     path('api/', include('rfid.urls')),
+    path('kiosk/', include('elibrary.urls')),
 ]

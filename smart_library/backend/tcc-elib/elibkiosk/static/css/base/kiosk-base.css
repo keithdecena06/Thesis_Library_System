@@ -1,0 +1,370 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #f6f7f9;
+}
+
+/* NAVBAR */
+.kiosk-navbar {
+  height: 64px;
+  background: linear-gradient(135deg, #8b0504, #a20705 45%, #c40a08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  position: relative;
+  z-index: 50;
+}
+
+.kiosk-navbar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255,255,255,0.25);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  
+}
+
+.nav-title {
+  font-size: 18px;
+  color: #fff;
+}
+
+.nav-right {
+  font-size: 15px;
+  color: #fff;
+}
+
+.nav-user {
+  font-weight: 600;
+}
+
+.nav-logout {
+  background: #b00000;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* RIGHT SIDE LAYOUT */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* =========================
+   USER BADGE (FIXED)
+========================= */
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffffff;  
+}
+
+.nav-user i {
+  font-size: 16px;
+  color: #ffffff;
+}
+
+/* =========================
+   LOGOUT BUTTON (FIXED 🔥)
+========================= */
+.nav-logout {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 6px 14px;
+  border-radius: 10px;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* hover */
+.nav-logout:hover {
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-1px);
+}
+
+/* click */
+.nav-logout:active {
+  transform: scale(0.96);
+}
+
+.nav-logout i {
+  font-size: 15px;
+}
+
+/* LAYOUT */
+.catalog-layout {
+  display: flex;
+  height: calc(100vh - 64px);
+  min-height: 0;
+}
+
+.catalog-content {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  padding: 24px;
+  overflow: auto;
+}
+
+.catalog-layout {
+  display: flex;
+  height: calc(100vh - 64px);
+  min-height: 0;
+}
+
+/* =========================
+   SIDEBAR CONTAINER
+========================= */
+.sidebar {
+  width: 250px; /* 🔥 slightly bigger */
+  background: linear-gradient(180deg, #ffffff, #fafafa);
+  padding: 26px 20px;
+  border-right: 1px solid rgba(0,0,0,0.06);
+  flex-shrink: 0;
+
+  box-shadow: 4px 0 20px rgba(0,0,0,0.04);
+}
+
+/* =========================
+   SECTION LABEL (BRAND)
+========================= */
+.sidebar .brand strong {
+  font-size: 12px; /* 🔥 slightly bigger */
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* =========================
+   NAV LINKS
+========================= */
+.sidebar nav a,
+.sidebar nav span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px 16px; /* 🔥 bigger tap area */
+  min-height: 52px;  /* 🔥 kiosk-friendly */
+
+  border-radius: 14px;
+  font-size: 15px; /* 🔥 slightly bigger */
+  font-weight: 500;
+
+  color: #334155;
+  text-decoration: none;
+
+  transition: transform 0.12s ease, background 0.15s ease;
+}
+
+/* ICON STYLE */
+.sidebar nav i {
+  font-size: 19px; /* 🔥 slightly bigger */
+  color: #94a3b8;
+  transition: 0.2s;
+}
+
+/* =========================
+   TOUCH FEEDBACK (FINAL 🔥)
+========================= */
+.sidebar nav a:active {
+  transform: scale(0.96); /* 💥 mas natural kaysa 0.95 */
+  background: rgba(0, 0, 0, 0.08); /* 💥 cleaner gray */
+}
+
+/* active press feel */
+.sidebar nav a.active:active {
+  transform: scale(0.94);
+  background: rgba(0, 0, 0, 0.12); /* 💥 konting darker for feedback */
+}
+
+/* =========================
+   ACTIVE STATE 🔥🔥🔥
+========================= */
+.sidebar nav a.active {
+  background: linear-gradient(135deg, #a20705, #d32f2f);
+  color: #fff;
+  font-weight: 600;
+
+  box-shadow: 0 6px 18px rgba(162, 7, 5, 0.25);
+}
+
+.sidebar nav a.active i {
+  color: #fff;
+}
+
+/* =========================
+   DISABLED
+========================= */
+.sidebar nav .disabled {
+  color: #cbd5f5;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* =========================
+   DIVIDER
+========================= */
+.sidebar-divider {
+  margin: 18px 0 14px;
+  height: 1px;
+  background: rgba(0,0,0,0.06);
+}
+
+/* =========================
+   GROUP SPACING
+========================= */
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================
+   PREMIUM RFID MODAL
+   ========================== */
+
+.rfid-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  transition: opacity 0.3s ease;
+}
+
+.rfid-modal.hidden {
+  display: none;
+}
+
+.rfid-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 35px;
+  padding: 50px 40px;
+  width: 350px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ICON CONTAINER */
+.rfid-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 25px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* ICON */
+.rfid-icon i {
+  font-size: 40px;
+  color: white;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* SCANNING STATE */
+.rfid-icon.scanning {
+  background: #007AFF;
+  box-shadow: 0 0 25px rgba(0, 122, 255, 0.4);
+  animation: pulse 1.8s infinite ease-in-out;
+}
+
+/* SUCCESS STATE */
+.rfid-icon.success {
+  background: #34C759;
+  box-shadow: 0 0 25px rgba(52, 199, 89, 0.4);
+  animation: successPop 0.4s ease forwards;
+}
+
+/* TEXT */
+.rfid-card h2 {
+  font-size: 26px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.rfid-card p {
+  font-size: 15px;
+  color: #3a3a3c;
+}
+
+/* ANIMATIONS */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.9; }
+}
+
+@keyframes successPop {
+  0% { transform: scale(0.8); }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
